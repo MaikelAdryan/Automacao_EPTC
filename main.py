@@ -1,11 +1,18 @@
 from PySimpleGUI import (
-  Window, theme, WINDOW_CLOSED, Push, Button, Text, HSep, VSep)
+  Window, theme, WINDOW_CLOSED, Push, Button, Text, HSep)
 from browser import start_firefox, close_firefox, download_excel
-from move_excel import clear_dir_excel, move_excel
+from move_excel import move_excel
 
 
 theme('Gray Gray Gray')
 browser, LAYOUT = None, [
+  [Text('Baixar as planilhas.'), Push()],
+  [
+    Button('LOTE 1', size=(7, 1), disabled=False),
+    Button('LOTE 2', size=(7, 1), disabled=False)
+  ],
+  [ Text('', key='response excel', visible=False)],
+  [HSep()],
   [Text('Pegar reclamações da EPTC'), Push()],
   [
     Push(),
@@ -14,13 +21,6 @@ browser, LAYOUT = None, [
     Push()
   ],
   [Text(text='', key='response firefox', visible=False)],
-  [HSep()],
-  [Text('Baixar as planilhas.'), Push()],
-  [
-    Button('LOTE 1', size=(7, 1), disabled=True),
-    Button('LOTE 2', size=(7, 1), disabled=True)
-  ],
-  [ Text('', key='response excel', visible=False)],
   [HSep()]
 ]
 WINDOW = Window('EPTC', LAYOUT)
@@ -46,13 +46,11 @@ while True:
     WINDOW['LOTE 2'].update(disabled=False)
   
   if events == 'LOTE 1':
-    clear_dir_excel()
-    download_excel(browser, 1)
+    download_excel(1)
     response_lote_1 = move_excel('LOTE_1')
     
   if events == 'LOTE 2':
-    clear_dir_excel()
-    download_excel(browser, 2)
+    download_excel(2)
     response_lote_2 = move_excel('LOTE_2')
 
   if events == WINDOW_CLOSED:
