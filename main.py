@@ -1,12 +1,11 @@
 from PySimpleGUI import (
-  Window, theme, WINDOW_CLOSED, Push, Button, Text, HSep)
+  Window, theme, WINDOW_CLOSED, Push, Button, Text, HSep, theme_previewer)
 from browser import start_firefox, close_firefox, download_excel
 from move_excel import move_excel
 
-
-theme('Gray Gray Gray')
+theme('LightBrown1')
 browser, LAYOUT = None, [
-  [Text('Baixar as planilhas.'), Push()],
+  [Text('Baixar as planilhas.', font=(12)), Push()],
   [
     Button('LOTE 1', size=(7, 1), disabled=False),
     Button('LOTE 2', size=(7, 1), disabled=False)
