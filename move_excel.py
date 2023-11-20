@@ -29,10 +29,4 @@ def move_excel(lote: str):
 
 
 if __name__ == '__main__':
-  # clear_dir_excel()
-  # exists = os.path.exists(f'{DIR_DOWNLOAD}\{FILENAME}')
-  # print(exists)
-  # print(get_dir_excel())
-  # print(DIR_ACTUAL)
-  # dir_excel = get_dir_excel()
-  print(move_excel('LOTE_1'))
+  move_excel('LOTE_1')
