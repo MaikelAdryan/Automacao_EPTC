@@ -6,7 +6,8 @@ DIR_TEMP = f'{DIR_ACTUAL}\\temp\\'
 
 USER_PATH = os.path.expanduser('~')
 DIR_DOWNLOAD = f'{USER_PATH}\Downloads'
-FILENAME = 'protocolos_por_fila'
+FILENAME = 'protocolos_por_fila.xls'
+DIR_EXCEL = f'{DIR_DOWNLOAD}\{FILENAME}'
 
 def clear_dir_excel():
   try:
@@ -18,17 +19,7 @@ def clear_dir_excel():
     return 'Falha ao limpar diretório de downloads.'
 
 
-def get_dir_excel():
-  DIR_EXCEL = [
-    f'{DIR_DOWNLOAD}\{excel}'
-    for excel in os.listdir(DIR_DOWNLOAD)
-    if excel.startswith(FILENAME)
-  ]
-  return DIR_EXCEL[0]
-
-
 def move_excel(lote: str):
-  DIR_EXCEL = get_dir_excel()
   try:
     if os.path.exists(DIR_EXCEL):
       move(DIR_EXCEL, f'{DIR_TEMP}{lote}.xls')
