@@ -1,7 +1,7 @@
 from PySimpleGUI import (
   Window, theme, WINDOW_CLOSED, Push, Button, Text, HSep, theme_previewer)
 from browser import start_firefox, close_firefox, download_excel
-from move_excel import move_excel
+from excel import move_excel
 
 theme('LightBrown1')
 browser, LAYOUT = None, [

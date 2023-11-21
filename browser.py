@@ -1,6 +1,6 @@
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
-from move_excel import clear_dir_excel
+from excel import clear_dir_download
 from login import USER, PASSWORD
 
 URL_EPTC = f'https://{USER}:{PASSWORD}@156poa.procempa.com.br'
@@ -27,7 +27,7 @@ def start_firefox():
 
 def download_excel(lote: int):
   BROWSER = start_firefox()
-  clear_dir_excel()
+  clear_dir_download()
   
   if lote == 1:
     BROWSER.get(URL_EXCEL_LOTE_1)
@@ -58,5 +58,6 @@ def close_firefox(browser: Firefox):
 
 
 if __name__ == '__main__':
-  browser = start_firefox()
-  print(close_firefox(browser))
+  # browser = start_firefox()
+  # print(close_firefox(browser))
+	print(URL_EXCEL_LOTE_1)
