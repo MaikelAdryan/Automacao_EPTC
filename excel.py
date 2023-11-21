@@ -12,6 +12,9 @@ DIR_DOWNLOAD = f'{USER_PATH}/Downloads'
 FILENAME = 'protocolos_por_fila'
 DIR_EXCEL = f'{DIR_DOWNLOAD}/{FILENAME}'
 
+REFACTOR_SERVICES = lambda service: service.split(' - ')[-1]
+REFACTOR_ADDRESSS = lambda address: address.split(' , 0')[0]
+
 def clear_dir_download():
   try:
     for excel in os.listdir(DIR_DOWNLOAD):
@@ -24,11 +27,10 @@ def clear_dir_download():
 
 def move_excel(lote: str):
   try:
-    if os.path.exists(DIR_EXCEL):
-      move(DIR_EXCEL, f'{DIR_TEMP}{lote}.xls')
-    return 'Movido com sucesso!'
+    move(f'{DIR_EXCEL}.xls', f'{DIR_TEMP}{lote}.xls')
+    return ['green', f'Atualizado com sucesso!']
   except:
-    return 'Arquivo não encontrados!'
+    return ['red', 'Arquivo não encontrado!']
 
 
 def read_excel(excel: str):
@@ -54,6 +56,7 @@ def extract_values_of_excel(lote_and_excel_readed: [str, BeautifulSoup]):
 	# 'Lote': [],
 	# 'Descrição': []
 	}
+
 	KEYS = RECLAMAÇÕES.keys()
 	tds = excel_readed.find_all('td')
 	for i, key in enumerate(KEYS):
@@ -62,11 +65,13 @@ def extract_values_of_excel(lote_and_excel_readed: [str, BeautifulSoup]):
 	
 	total = len(RECLAMAÇÕES['Protocolo'])
 
-	RECLAMAÇÕES['Lote'] = [lote] * total
-
 	for key in KEYS:
 		if len(RECLAMAÇÕES[key]) != total:
-			return f'O total de {key}: {len(RECLAMAÇÕES[key])} não bateu com {total}'
+			return f'{key}: {len(RECLAMAÇÕES[key])} não bateu com {total}'
+
+	RECLAMAÇÕES['Serviço'] = list(map(REFACTOR_SERVICES, RECLAMAÇÕES['Serviço']))
+	RECLAMAÇÕES['Endereço'] = list(map(REFACTOR_ADDRESSS, RECLAMAÇÕES['Endereço']))
+	RECLAMAÇÕES['Lote'] = [lote] * total
 
 	return RECLAMAÇÕES
 
@@ -75,7 +80,8 @@ if __name__ == '__main__':
   # move_excel('LOTE_1')
 	# print(DIR_TEMP)
 	lote_1 = read_excel('LOTE_1.xls')
-	lote_2 = read_excel('LOTE_2.xls')
+	# lote_2 = read_excel('LOTE_2.xls')
 	# protocols = extract_protocol_in_excel(read)
-	print(extract_values_of_excel(lote_1))
-	print(extract_values_of_excel(lote_2))
+	dict = extract_values_of_excel(lote_1)
+	print(dict['Endereço'])
+	# print(extract_values_of_excel(lote_2))
