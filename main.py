@@ -1,14 +1,15 @@
 from PySimpleGUI import (
   Window, theme, WINDOW_CLOSED, Push, Button, Text, HSep, theme_previewer)
 from browser import start_firefox, close_firefox, download_excel
-from move_excel import move_excel
+from excel import move_excel
 
 theme('LightBrown1')
 browser, LAYOUT = None, [
   [Text('Baixar as planilhas.', font=(12)), Push()],
   [
     Button('LOTE 1', size=(7, 1), disabled=False),
-    Button('LOTE 2', size=(7, 1), disabled=False)
+    Button('LOTE 2', size=(7, 1), disabled=False),
+    Button('AMBAS', size=(7, 1), disabled=False)
   ],
   [ Text('', key='response excel', visible=False)],
   [HSep()],
@@ -25,34 +26,48 @@ browser, LAYOUT = None, [
 WINDOW = Window('EPTC', LAYOUT)
 
 while True:
-  events, values = WINDOW.read()
-  
-  if events == 'Abrir Firefox':
-    browser = start_firefox()
-    WINDOW['Abrir Firefox'].update(disabled=True)
-    WINDOW['Fechar Firefox'].update(disabled=False)
-    WINDOW['LOTE 1'].update(disabled=False)
-    WINDOW['LOTE 2'].update(disabled=False)
-  
-  if events == 'Fechar Firefox':
-    response = close_firefox(browser)
-    browser = None
-    WINDOW['response firefox'].update(response)
-    WINDOW['response firefox'].update(visible=True)
-    WINDOW['Abrir Firefox'].update(disabled=False)
-    WINDOW['Fechar Firefox'].update(disabled=True)
-    WINDOW['LOTE 1'].update(disabled=False)
-    WINDOW['LOTE 2'].update(disabled=False)
-  
-  if events == 'LOTE 1':
-    download_excel(1)
-    response_lote_1 = move_excel('LOTE_1')
-    
-  if events == 'LOTE 2':
-    download_excel(2)
-    response_lote_2 = move_excel('LOTE_2')
+	events, values = WINDOW.read()
 
-  if events == WINDOW_CLOSED:
-    break
+	if events == 'Abrir Firefox':
+		browser = start_firefox()
+		WINDOW['Abrir Firefox'].update(disabled=True)
+		WINDOW['Fechar Firefox'].update(disabled=False)
+		WINDOW['LOTE 1'].update(disabled=False)
+		WINDOW['LOTE 2'].update(disabled=False)
+
+	if events == 'Fechar Firefox':
+		response = close_firefox(browser)
+		browser = None
+		WINDOW['response firefox'].update(response)
+		WINDOW['response firefox'].update(visible=True)
+		WINDOW['Abrir Firefox'].update(disabled=False)
+		WINDOW['Fechar Firefox'].update(disabled=True)
+		WINDOW['LOTE 1'].update(disabled=False)
+		WINDOW['LOTE 2'].update(disabled=False)
+
+	if events == 'LOTE 1':
+		download_excel(1)
+		color, response = move_excel('LOTE_1')
+		WINDOW['response excel'].update(visible=True)
+		WINDOW['response excel'].update(text_color=color)
+		WINDOW['response excel'].update(response)
+		
+	if events == 'LOTE 2':
+		download_excel(2)
+		color, response = move_excel('LOTE_2')
+		WINDOW['response excel'].update(visible=True)
+		WINDOW['response excel'].update(text_color=color)
+		WINDOW['response excel'].update(response)
+
+	if events == 'AMBAS':
+		for i in range(1, 3):
+			download_excel(i)
+			color, response = move_excel(f'LOTE_{i}')
+		WINDOW['response excel'].update(visible=True)
+		WINDOW['response excel'].update(text_color=color)
+		WINDOW['response excel'].update(response)
+
+	if events == WINDOW_CLOSED:
+		break
 
 WINDOW.close()
