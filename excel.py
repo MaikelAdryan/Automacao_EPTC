@@ -16,14 +16,20 @@ REFACTOR_SERVICES = lambda service: service.split(' - ')[-1]
 REFACTOR_ADDRESSS = lambda address: address.split(' ,')[0]
 REFACTOR_PROTOCOL = lambda protocol: protocol.replace('\n', '')
 
+def contains_excel_in_dir_download():
+	for excel in os.listdir(DIR_DOWNLOAD):
+		if excel.startswith(FILENAME):
+			return True
+		return False
+
+
 def clear_dir_download():
-  try:
-    for excel in os.listdir(DIR_DOWNLOAD):
-      if excel.startswith(FILENAME):
-        os.remove(f'{DIR_DOWNLOAD}/{excel}')
-    return 'Limpo com sucesso!'
-  except:
-    return 'Falha ao limpar diretório de downloads.'
+	if contains_excel_in_dir_download():
+		for excel in os.listdir(DIR_DOWNLOAD):
+			os.remove(f'{DIR_DOWNLOAD}/{excel}')
+		return 'Limpo com sucesso!'
+	else:
+		return 'Falha ao limpar diretório de downloads.'
 
 
 def move_excel(lote: str):
@@ -91,17 +97,28 @@ def merged_reclamations(LOTE_1: dict, LOTE_2: dict):
 			f'lote 2 tem {len(LOTE_2_KEYS)} chaves.'
 		)
 
+def fazer_magia():
+	lote_1 = read_excel('LOTE_1.xls')
+	lote_2 = read_excel('LOTE_2.xls')
+	dict_lote1 = extract_values_of_excel(lote_1)
+	dict_lote2 = extract_values_of_excel(lote_2)
+	dict_ = merged_reclamations(dict_lote1, dict_lote2)
+	return dict_
+
 
 if __name__ == '__main__':
   # move_excel('LOTE_1')
 	# print(DIR_TEMP)
-	lote_1 = read_excel('LOTE_1.xls')
-	lote_2 = read_excel('LOTE_2.xls')
 	# lote_2 = read_excel('LOTE_2.xls')
 	# protocols = extract_protocol_in_excel(read)
-	dict_lote1 = extract_values_of_excel(lote_1)
-	dict_lote2 = {}#extract_values_of_excel(lote_2)
 	# lotes = dict_lote1.update(dict_lote2)
 	# print(lotes)
-	print(merged_reclamations(dict_lote1, dict_lote2))
 	# print(extract_values_of_excel(lote_1))
+	lote_1 = read_excel('LOTE_1.xls')
+	dict_lote1 = extract_values_of_excel(lote_1)
+	get_protocols(dict_lote1)
+	# lote_2 = read_excel('LOTE_2.xls')
+	# dict_lote2 = extract_values_of_excel(lote_2)
+	# dict_ = merged_reclamations(dict_lote1, dict_lote2)
+	# get_protocols(dict_)
+	pass
