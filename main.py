@@ -25,7 +25,7 @@ browser, LAYOUT = None, [
 ]
 WINDOW = Window('EPTC', LAYOUT)
 
-def add_response(key: str, text: str, visible: bool, color: text_color):
+def add_response(key: str, text: str, visible: bool, color: str):
 	WINDOW[key].update(visible=visible)
 	WINDOW[key].update(text_color=color)
 	WINDOW[key].update(text)
@@ -52,18 +52,21 @@ while True:
 		WINDOW['LOTE 2'].update(disabled=False)
 
 	if events == 'LOTE 1':
-		download_excel(1)
+		color, response = download_excel(1)
+		add_response('response excel', response, True, color)
 		color, response = move_excel('LOTE_1')
 		add_response('response excel', response, True, color)
 		
 	if events == 'LOTE 2':
-		download_excel(2)
+		color, response = download_excel(2)
+		add_response('response excel', response, True, color)
 		color, response = move_excel('LOTE_2')
 		add_response('response excel', response, True, color)
 
 	if events == 'AMBOS':
 		for i in range(1, 3):
-			download_excel(i)
+			color, response = download_excel(i)
+			add_response('response excel', response, True, color)
 			color, response = move_excel(f'LOTE_{i}')
 			add_response('response excel', response, True, color)
 
