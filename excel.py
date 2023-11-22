@@ -13,16 +13,23 @@ FILENAME = 'protocolos_por_fila'
 DIR_EXCEL = f'{DIR_DOWNLOAD}/{FILENAME}'
 
 REFACTOR_SERVICES = lambda service: service.split(' - ')[-1]
-REFACTOR_ADDRESSS = lambda address: address.split(' , 0')[0]
+REFACTOR_ADDRESSS = lambda address: address.split(' ,')[0]
+REFACTOR_PROTOCOL = lambda protocol: protocol.replace('\n', '')
+
+def contains_excel_in_dir_download():
+	for excel in os.listdir(DIR_DOWNLOAD):
+		if excel.startswith(FILENAME):
+			return True
+		return False
+
 
 def clear_dir_download():
-  try:
-    for excel in os.listdir(DIR_DOWNLOAD):
-      if excel.startswith(FILENAME):
-        os.remove(f'{DIR_DOWNLOAD}/{excel}')
-    return 'Limpo com sucesso!'
-  except:
-    return 'Falha ao limpar diretório de downloads.'
+	if contains_excel_in_dir_download():
+		for excel in os.listdir(DIR_DOWNLOAD):
+			os.remove(f'{DIR_DOWNLOAD}/{excel}')
+		return 'Limpo com sucesso!'
+	else:
+		return 'Falha ao limpar diretório de downloads.'
 
 
 def move_excel(lote: str):
@@ -45,43 +52,73 @@ def read_excel(excel: str):
 def extract_values_of_excel(lote_and_excel_readed: [str, BeautifulSoup]):
 	lote, excel_readed = lote_and_excel_readed
 	RECLAMAÇÕES = {
-		'Protocolo': [],
-		'Reclamante': [],
-		'Serviço': [],
-		'Endereço': [],
-		'Data Abertura': [],
-		'Data Vencimento': [],
-		'Prazo (dias)': [],
-		'Atraso(dias)': [],
-	# 'Lote': [],
-	# 'Descrição': []
+		'PROTOCOLO': [],
+		'RECLAMANTE': [],
+		'SERVIÇO': [],
+		'ENDEREÇO': [],
+		'DATA_ABERTURA': [],
+		'DATA_VENCIMENTO': [],
+		'PRAZO_DIAS': [],
+		'ATRASO_DIAS': [],
+	# 'LOTE': [],
+	# 'DESCRIÇÃO': []
 	}
 
 	KEYS = RECLAMAÇÕES.keys()
 	tds = excel_readed.find_all('td')
 	for i, key in enumerate(KEYS):
-		values = [td.text.strip().replace('\n', '') for td in tds[i::8]]
+		values = [str(td.text).strip().upper() for td in tds[i::8]]
 		RECLAMAÇÕES[key] = values
 	
-	total = len(RECLAMAÇÕES['Protocolo'])
+	total = len(RECLAMAÇÕES['PROTOCOLO'])
 
 	for key in KEYS:
 		if len(RECLAMAÇÕES[key]) != total:
 			return f'{key}: {len(RECLAMAÇÕES[key])} não bateu com {total}'
 
-	RECLAMAÇÕES['Serviço'] = list(map(REFACTOR_SERVICES, RECLAMAÇÕES['Serviço']))
-	RECLAMAÇÕES['Endereço'] = list(map(REFACTOR_ADDRESSS, RECLAMAÇÕES['Endereço']))
-	RECLAMAÇÕES['Lote'] = [lote] * total
+	RECLAMAÇÕES['PROTOCOLO'] = list(map(REFACTOR_PROTOCOL, RECLAMAÇÕES['PROTOCOLO']))
+	RECLAMAÇÕES['SERVIÇO'] 	 = list(map(REFACTOR_SERVICES, RECLAMAÇÕES['SERVIÇO']))
+	RECLAMAÇÕES['ENDEREÇO']  = list(map(REFACTOR_ADDRESSS, RECLAMAÇÕES['ENDEREÇO']))
+	RECLAMAÇÕES['LOTE'] = [lote] * total
 
 	return RECLAMAÇÕES
+
+
+def merged_reclamations(LOTE_1: dict, LOTE_2: dict):
+	LOTE_1_KEYS, LOTE_2_KEYS = LOTE_1.keys(), LOTE_2.keys()
+	if LOTE_1_KEYS == LOTE_2_KEYS:
+		RECLAMATIONS = {}
+		for key in LOTE_1_KEYS:
+			RECLAMATIONS[key] =  LOTE_1[key] + LOTE_2[key]
+		return RECLAMATIONS
+	else:
+		return (
+			f'Lote 1 tem {len(LOTE_1_KEYS)} chaves e'
+			f'lote 2 tem {len(LOTE_2_KEYS)} chaves.'
+		)
+
+def fazer_magia():
+	lote_1 = read_excel('LOTE_1.xls')
+	lote_2 = read_excel('LOTE_2.xls')
+	dict_lote1 = extract_values_of_excel(lote_1)
+	dict_lote2 = extract_values_of_excel(lote_2)
+	dict_ = merged_reclamations(dict_lote1, dict_lote2)
+	return dict_
 
 
 if __name__ == '__main__':
   # move_excel('LOTE_1')
 	# print(DIR_TEMP)
-	lote_1 = read_excel('LOTE_1.xls')
 	# lote_2 = read_excel('LOTE_2.xls')
 	# protocols = extract_protocol_in_excel(read)
-	dict = extract_values_of_excel(lote_1)
-	print(dict['Endereço'])
-	# print(extract_values_of_excel(lote_2))
+	# lotes = dict_lote1.update(dict_lote2)
+	# print(lotes)
+	# print(extract_values_of_excel(lote_1))
+	lote_1 = read_excel('LOTE_1.xls')
+	dict_lote1 = extract_values_of_excel(lote_1)
+	get_protocols(dict_lote1)
+	# lote_2 = read_excel('LOTE_2.xls')
+	# dict_lote2 = extract_values_of_excel(lote_2)
+	# dict_ = merged_reclamations(dict_lote1, dict_lote2)
+	# get_protocols(dict_)
+	pass

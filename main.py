@@ -9,7 +9,7 @@ browser, LAYOUT = None, [
   [
     Button('LOTE 1', size=(7, 1), disabled=False),
     Button('LOTE 2', size=(7, 1), disabled=False),
-    Button('AMBAS', size=(7, 1), disabled=False)
+    Button('AMBOS', size=(7, 1), disabled=False)
   ],
   [ Text('', key='response excel', visible=False)],
   [HSep()],
@@ -24,6 +24,12 @@ browser, LAYOUT = None, [
   [HSep()]
 ]
 WINDOW = Window('EPTC', LAYOUT)
+
+def add_response(key: str, text: str, visible: bool, color: str):
+	WINDOW[key].update(visible=visible)
+	WINDOW[key].update(text_color=color)
+	WINDOW[key].update(text)
+
 
 while True:
 	events, values = WINDOW.read()
@@ -46,26 +52,23 @@ while True:
 		WINDOW['LOTE 2'].update(disabled=False)
 
 	if events == 'LOTE 1':
-		download_excel(1)
+		color, response = download_excel(1)
+		add_response('response excel', response, True, color)
 		color, response = move_excel('LOTE_1')
-		WINDOW['response excel'].update(visible=True)
-		WINDOW['response excel'].update(text_color=color)
-		WINDOW['response excel'].update(response)
+		add_response('response excel', response, True, color)
 		
 	if events == 'LOTE 2':
-		download_excel(2)
+		color, response = download_excel(2)
+		add_response('response excel', response, True, color)
 		color, response = move_excel('LOTE_2')
-		WINDOW['response excel'].update(visible=True)
-		WINDOW['response excel'].update(text_color=color)
-		WINDOW['response excel'].update(response)
+		add_response('response excel', response, True, color)
 
-	if events == 'AMBAS':
+	if events == 'AMBOS':
 		for i in range(1, 3):
-			download_excel(i)
+			color, response = download_excel(i)
+			add_response('response excel', response, True, color)
 			color, response = move_excel(f'LOTE_{i}')
-		WINDOW['response excel'].update(visible=True)
-		WINDOW['response excel'].update(text_color=color)
-		WINDOW['response excel'].update(response)
+			add_response('response excel', response, True, color)
 
 	if events == WINDOW_CLOSED:
 		break
