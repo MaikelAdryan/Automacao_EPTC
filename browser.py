@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
 from excel import (
-  contains_excel_in_dir_download, clear_dir_download, fazer_magia)
+  contains_excel_in_dir_download, clear_dir_download)
 from login import USER, PASSWORD
-from excel import DIR_TEMP
+from excel import DIR_TEMP, move_excel
 import json
 
 URL_EPTC = f'https://{USER}:{PASSWORD}@156poa.procempa.com.br'
@@ -38,46 +39,59 @@ def start_firefox():
 
 def goto_url_download(URL_LOTE: str):
   """Função que abre o site da EPTC, baixa o excel e fecha o navegador
-
+  
   Args:
-  URL_LOTE (str): Baixa a planilha com base no lote
+  	URL_LOTE (str): Baixa a planilha com base no lote
+  
+  Returns:
+  	[color, text]: a cor a ser preenchida e mensagem de falha ou sucesso
   """
   try:
     BROWSER = start_firefox()
-    BROWSER.get(URL_LOTE) # type: ignore
-    BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click() # type: ignore
-    close_firefox(BROWSER) # type: ignore
-    return 'Sucesso!'
+    BROWSER.get(URL_LOTE)
+    BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
+    close_firefox(BROWSER)
+    return ['green', 'Sucesso!']
   except:
-    return 'Falha ao baixar.'
+    return ['red', 'Falha ao baixar.']
 
 
 def download_excel(lote: int):
-  """Função para ir até o site da Eptc e baixar as planilhas do excel para extrair os dados das mesmas.
-
+  """Função para ir até o site da Eptc e baixar as planilhas do excel 
+  para extrair os dados das mesmas.
+  
   Args:
-    lote (int): Número do lote para baixar a planilha
-
+  	lote (int): Número do lote para baixar a planilha
+  
   Returns:
-    response (list[color, text]): Retorna uma resposta se concluido ou falha e a cor respectiva
+  	[color, text]: a cor a ser preenchida e mensagem de falha ou sucesso
   """
   clear_dir_download()
-  response = []
+  moved  = ''
   match lote:
     case 1:
       goto_url_download(URL_EXCEL_LOTE_1)
       if contains_excel_in_dir_download():
-        response = ['green', 'Excel lote 1 baixado com sucesso!']
+        moved = move_excel('LOTE_1.xls')
     case 2:
       goto_url_download(URL_EXCEL_LOTE_2)
       if contains_excel_in_dir_download():
-        response = ['green', 'Excel lote 2 baixado com sucesso!']
+        moved = move_excel('LOTE_2.xls')
     case _ :
-      response = ['red', 'Lote inválido!']
-  return response
+      return ['red', 'Falha ao baixar excel!']
+  return ['green', f'Excel LOTE {lote} {moved}!']
 
 
-def get_protocols(RECLAMATIONS: dict):
+def get_informations_from_reclamation(RECLAMATIONS: dict):
+  """Função que pega todos os dados de cada protocolo das reclamações e
+  cria um arquivo json contendo todos os dados
+  
+  Args:
+  	RECLAMATIONS (dict): Dados dos excels contendo as reclamações
+  
+  Returns:
+  	[color, text]: a cor a ser preenchida e mensagem de falha ou sucesso
+  """
   PROTOCOLS = RECLAMATIONS['PROTOCOLO']
   INFORMATIONS_PROTOCOL = {
     'STPOA_LINHA': [],
@@ -86,7 +100,7 @@ def get_protocols(RECLAMATIONS: dict):
     'STPOA_MOTIVO': [],
     'STPOA_DATA': [],
     'STPOA_HORA': [],
-    'DESCRIPTIONS': []
+    'DESCRIÇÃO': []
   }
 
   INFORMATIONS_KEYS = INFORMATIONS_PROTOCOL.keys()
@@ -95,21 +109,29 @@ def get_protocols(RECLAMATIONS: dict):
   if TOTAL > 0:
     BROWSER = start_firefox()
     for protocol in PROTOCOLS:
-      BROWSER.get(f'{URL_FIND_PROTOCOL}{protocol}') # type: ignore
-      BROWSER.find_element(By.XPATH, XPATH_DETALHES_TRAMITES).click()
-      text = BROWSER.find_element(By.XPATH, XPATH_TEXTAREA).text
-      INFORMATIONS_PROTOCOL['DESCRIPTIONS'].append(text)
-      BROWSER.get(f'{URL_INFO_TRAMITE}{protocol}{RESTANT}')
-      for key in INFORMATIONS_KEYS:
-        if key != 'DESCRIPTIONS': 
+      try:
+        BROWSER.get(f'{URL_FIND_PROTOCOL}{protocol}')
+        BROWSER.find_element(By.XPATH, XPATH_DETALHES_TRAMITES).click()
+        text = BROWSER.find_element(By.XPATH, XPATH_TEXTAREA).text
+        INFORMATIONS_PROTOCOL['DESCRIÇÃO'].append(text)
+      except:
+        return ['red', 'Baixe a planilha novamente!']
+      try:
+        BROWSER.get(f'{URL_INFO_TRAMITE}{protocol}{RESTANT}')
+        for key in INFORMATIONS_KEYS:
+          if key == 'DESCRIÇÃO':
+            break
           td = BROWSER.find_element(By.XPATH, f"//td[text()='{key}']")
           text = td.find_element(By.XPATH, 'following-sibling::td').text
           INFORMATIONS_PROTOCOL[key].append(text)
-
+      except:
+        return ['red', 'Baixe a planilha novamente!']
+    close_firefox(BROWSER)
     for key in INFORMATIONS_KEYS:
       TOTAL_KEY = len(INFORMATIONS_PROTOCOL[key])
       if TOTAL != TOTAL_KEY:
-        return f'Total não bate! {key} com {TOTAL_KEY} valores é diferente de {TOTAL}.'
+        return f'Total não bate! {key} com {TOTAL_KEY} valores é difer'+\
+          f'ente de {TOTAL}.'
       else:
         RECLAMATIONS[key] = INFORMATIONS_PROTOCOL[key]
     
@@ -138,8 +160,4 @@ def close_firefox(browser: Firefox):
 
 
 if __name__ == '__main__':
-  # browser = start_firefox()
-  # print(close_firefox(browser))
-  # print(download_excel(2))
-  print(get_protocols(fazer_magia()))
   pass
