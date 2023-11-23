@@ -1,74 +1,69 @@
 from PySimpleGUI import (
   Window, theme, WINDOW_CLOSED, Push, Button, Text, HSep)
-from browser import start_firefox, close_firefox, download_excel
-from excel import move_excel
+from browser import download_excel
+from excel import read_excel
 
-theme('LightBrown1')
+theme('Topanga')
 browser, LAYOUT = None, [
-  [Text(text='Baixar as planilhas.', font=(12)), Push()],
-  [
-    Button('LOTE 1', size=(7, 1), disabled=False),
-    Button('LOTE 2', size=(7, 1), disabled=False),
-    Button('AMBOS', size=(7, 1), disabled=False)
-  ],
-  [ Text(text='', key='response excel', visible=False)],
-  [HSep()],
-  [Text('Pegar reclamações da EPTC'), Push()],
+  [Text('Baixar as planilhas.', font=(12)), Push()],
   [
     Push(),
-    Button('Abrir Firefox', size=(18, 1), disabled=False),
-    Button('Fechar Firefox', size=(18, 1), disabled=True),
+    Button('LOTE 1', key='download lote 1', size=(7, 1), disabled=False),
+    Button('LOTE 2', key='download lote 2', size=(7, 1), disabled=False),
+    Button('AMBOS', key='download lotes', size=(7, 1), disabled=False),
     Push()
   ],
-  [Text(text='', key='response firefox', visible=False)],
-  [HSep()]
+  [Text('', key='response donwload', visible=False), Push()],
+  
+  [HSep()],
+  
+  [Text('Ler excels', font=(12)), Push()],
+  [
+    Push(),
+    Button('LOTE 1', key='extract lote 1', size=(7, 1), disabled=False),
+    Button('LOTE 2', key='extract lote 2', size=(7, 1), disabled=False),
+    Button('AMBOS', key='extract lotes', size=(7, 1), disabled=False),
+    Push()
+  ],
+  [Text('', key='response readed', visible=False), Push()],
+  [HSep()],
 ]
 WINDOW = Window('EPTC', LAYOUT)
 
-def add_response(key: str, text: str, visible: bool, color: str):
+def add_response(key: str, new_text: str, visible: bool, color: str):
 	WINDOW[key].update(visible=visible)
 	WINDOW[key].update(text_color=color)
-	WINDOW[key].update(text=text)
+	WINDOW[key].update(new_text)
 
 
 while True:
 	events, values = WINDOW.read()
 
-	if events == 'Abrir Firefox':
-		browser = start_firefox()
-		WINDOW['Abrir Firefox'].update(disabled=True)
-		WINDOW['Fechar Firefox'].update(disabled=False)
-		WINDOW['LOTE 1'].update(disabled=False)
-		WINDOW['LOTE 2'].update(disabled=False)
-
-	if events == 'Fechar Firefox':
-		response = close_firefox(browser)
-		browser = None
-		WINDOW['response firefox'].update(response)
-		WINDOW['response firefox'].update(visible=True)
-		WINDOW['Abrir Firefox'].update(disabled=False)
-		WINDOW['Fechar Firefox'].update(disabled=True)
-		WINDOW['LOTE 1'].update(disabled=False)
-		WINDOW['LOTE 2'].update(disabled=False)
-
-	if events == 'LOTE 1':
+	if events == 'download lote 1':
 		color, response = download_excel(1)
-		add_response('response excel', response, True, color)
-		color, response = move_excel('LOTE_1')
-		add_response('response excel', response, True, color)
+		add_response('response donwload', response, True, color)
 		
-	if events == 'LOTE 2':
+	if events == 'download lote 2':
 		color, response = download_excel(2)
-		add_response('response excel', response, True, color)
-		color, response = move_excel('LOTE_2')
-		add_response('response excel', response, True, color)
+		add_response('response donwload', response, True, color)
 
-	if events == 'AMBOS':
+	if events == 'download lotes':
 		for i in range(1, 3):
 			color, response = download_excel(i)
-			add_response('response excel', response, True, color)
-			color, response = move_excel(f'LOTE_{i}')
-			add_response('response excel', response, True, color)
+		response = 'Excels LOTE 1 e 2 atualizados com sucesso!'
+		add_response('response donwload', response, True, color)
+  
+	if events == 'extract lote 1':
+		color, response = read_excel('LOTE_1.xls')
+		add_response('response readed', response, True, color)
+  
+	if events == 'extract lote 2':
+		color, response = read_excel('LOTE_2.xls')
+		add_response('response readed', response, True, color)
+  
+	if events == 'extract lotes':
+		# lote_1_readed = read_excel('LOTE_1.xls')
+		pass
 
 	if events == WINDOW_CLOSED:
 		break
