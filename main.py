@@ -1,5 +1,5 @@
 from PySimpleGUI import (
-  Window, theme, WINDOW_CLOSED, Push, Button, Text, HSep, theme_previewer)
+  Window, theme, WINDOW_CLOSED, Push, Button, Text, HSep)
 from browser import start_firefox, close_firefox, download_excel
 from excel import move_excel
 
