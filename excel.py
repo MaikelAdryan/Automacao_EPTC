@@ -87,7 +87,7 @@ def extract_values_of_excel(lote_and_excel_readed):
   return RECLAMAÇÕES
 
 
-def merged_reclamations(LOTE_1: dict, LOTE_2: dict):
+def merged_excels(LOTE_1: dict, LOTE_2: dict):
   LOTE_1_KEYS, LOTE_2_KEYS = LOTE_1.keys(), LOTE_2.keys()
   if LOTE_1_KEYS == LOTE_2_KEYS:
     RECLAMATIONS = {}
@@ -105,8 +105,8 @@ def fazer_magia():
   lote_2 = read_excel('LOTE_2.xls')
   dict_lote1 = extract_values_of_excel(lote_1)
   dict_lote2 = extract_values_of_excel(lote_2)
-  dict_ = merged_reclamations(dict_lote1, dict_lote2)
-  return dict_
+  # dict_ = merged_excels(dict_lote1, dict_lote2)
+  return dict_lote1
 
 
 if __name__ == '__main__':
@@ -123,6 +123,6 @@ if __name__ == '__main__':
   # get_protocols(dict_lote1)
   # lote_2 = read_excel('LOTE_2.xls')
   # dict_lote2 = extract_values_of_excel(lote_2)
-  # dict_ = merged_reclamations(dict_lote1, dict_lote2)
+  # dict_ = merged_excels(dict_lote1, dict_lote2)
   # get_protocols(dict_)
   pass
