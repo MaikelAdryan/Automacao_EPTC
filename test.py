@@ -19,9 +19,6 @@ source = [
 	'STPOA_HORA'
 ]
 
-
-
-	
 BROWSER = start_firefox()
 BROWSER.get(f'{URL_FIND_PROTOCOL}{protocol}')
 BROWSER.find_element(By.XPATH, XPATH_DETALHES_TRAMITES).click()
