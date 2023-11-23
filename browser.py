@@ -4,7 +4,8 @@ from selenium.webdriver.common.by import By
 from excel import (
   contains_excel_in_dir_download, clear_dir_download, fazer_magia)
 from login import USER, PASSWORD
-from time import sleep
+from excel import DIR_TEMP
+import json
 
 URL_EPTC = f'https://{USER}:{PASSWORD}@156poa.procempa.com.br'
 URL_FILA = f'{URL_EPTC}/sistemas/156/fila/servicos_local.php?'
@@ -22,18 +23,17 @@ URL_INFO_TRAMITE = (
   f'{URL_EPTC}/Sistemas/156/fila/visualiza_info.php?protocolo=')
 RESTANT = '&seq_tramita=0&fase=0&cod_tramite=0'
 
+FILE_NAME = 'dados.json'
+
 def start_firefox():
   """Função para abrir o navegador firefox e ir até o site da EPTC
 
   Returns:
     webdriver.Firefox: Retorna o navegador firefox
   """
-  try:
-    BROWSER = FIREFOX()
-    BROWSER.get(URL_EPTC)
-    return BROWSER
-  except:
-    return 'Falha ao abrir o firefox.'
+  BROWSER = FIREFOX()
+  BROWSER.get(URL_EPTC)
+  return BROWSER
 
 
 def goto_url_download(URL_LOTE: str):
@@ -62,6 +62,7 @@ def download_excel(lote: int):
     response (list[color, text]): Retorna uma resposta se concluido ou falha e a cor respectiva
   """
   clear_dir_download()
+  response = []
   match lote:
     case 1:
       goto_url_download(URL_EXCEL_LOTE_1)
@@ -78,35 +79,47 @@ def download_excel(lote: int):
 
 def get_protocols(RECLAMATIONS: dict):
   PROTOCOLS = RECLAMATIONS['PROTOCOLO']
-  DESCRIÇÃO = []
   INFORMATIONS_PROTOCOL = {
     'STPOA_LINHA': [],
     'STPOA_SENTIDO': [],
     'STPOA_PREFIXO': [],
-    # 'STPOA_OPERADOR': [],
     'STPOA_MOTIVO': [],
     'STPOA_DATA': [],
-    'STPOA_HORA': []
+    'STPOA_HORA': [],
+    'DESCRIPTIONS': []
   }
 
   INFORMATIONS_KEYS = INFORMATIONS_PROTOCOL.keys()
- 
-  if len(PROTOCOLS) > 0:
+  TOTAL = len(PROTOCOLS)
+
+  if TOTAL > 0:
     BROWSER = start_firefox()
     for protocol in PROTOCOLS:
-      sleep(0.5)
       BROWSER.get(f'{URL_FIND_PROTOCOL}{protocol}') # type: ignore
       BROWSER.find_element(By.XPATH, XPATH_DETALHES_TRAMITES).click()
       text = BROWSER.find_element(By.XPATH, XPATH_TEXTAREA).text
-      DESCRIÇÃO.append(text)
-      URL_INFO_TRAMITE = f'{URL_EPTC}/Sistemas/156/fila/visualiza_info.php?protocolo={protocol}&seq_tramita=0&fase=0&cod_tramite=0'
+      INFORMATIONS_PROTOCOL['DESCRIPTIONS'].append(text)
       BROWSER.get(f'{URL_INFO_TRAMITE}{protocol}{RESTANT}')
       for key in INFORMATIONS_KEYS:
-        td = BROWSER.find_element(By.XPATH, f"//td[text()='{key}']")
-        text = td.find_element(By.XPATH, 'following-sibling::td').text
-        INFORMATIONS_PROTOCOL[f'{key}'].append(text)
-        print(INFORMATIONS_PROTOCOL[f'{key}'])
-      
+        if key != 'DESCRIPTIONS': 
+          td = BROWSER.find_element(By.XPATH, f"//td[text()='{key}']")
+          text = td.find_element(By.XPATH, 'following-sibling::td').text
+          INFORMATIONS_PROTOCOL[key].append(text)
+
+    for key in INFORMATIONS_KEYS:
+      TOTAL_KEY = len(INFORMATIONS_PROTOCOL[key])
+      if TOTAL != TOTAL_KEY:
+        return f'Total não bate! {key} com {TOTAL_KEY} valores é diferente de {TOTAL}.'
+      else:
+        RECLAMATIONS[key] = INFORMATIONS_PROTOCOL[key]
+    
+    try:
+      with open(f'{DIR_TEMP}{FILE_NAME}', 'w', encoding='utf-8') as FILE:
+        json.dump(RECLAMATIONS, FILE, indent=2, ensure_ascii=False)
+      return ['green', 'Dados salvos com sucesso!']
+    except:
+      return ['red', 'Falha ao salvar os dados.']
+
 
 def close_firefox(browser: Firefox):
   """Função para fechar o navegador Firefox já aberto antes
@@ -128,5 +141,5 @@ if __name__ == '__main__':
   # browser = start_firefox()
   # print(close_firefox(browser))
   # print(download_excel(2))
-  get_protocols(fazer_magia())
+  print(get_protocols(fazer_magia()))
   pass
