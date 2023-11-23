@@ -5,7 +5,7 @@ from excel import read_excel
 
 theme('Topanga')
 browser, LAYOUT = None, [
-  [Text('Baixar as planilhas.', font=(12)), Push()],
+  [Text('Baixar as planilhas.', font=(12))],
   [
     Push(),
     Button('LOTE 1', key='download lote 1', size=(7, 1), disabled=False),
@@ -13,7 +13,7 @@ browser, LAYOUT = None, [
     Button('AMBOS', key='download lotes', size=(7, 1), disabled=False),
     Push()
   ],
-  [Text('', key='response donwload', visible=False), Push()],
+  [Text('', key='response donwload', visible=False)],
   
   [HSep()],
   
@@ -25,7 +25,7 @@ browser, LAYOUT = None, [
     Button('AMBOS', key='extract lotes', size=(7, 1), disabled=False),
     Push()
   ],
-  [Text('', key='response readed', visible=False), Push()],
+  [Text('', key='response readed', visible=False)],
   [HSep()],
 ]
 WINDOW = Window('EPTC', LAYOUT)
@@ -62,7 +62,6 @@ while True:
 		add_response('response readed', response, True, color)
   
 	if events == 'extract lotes':
-		# lote_1_readed = read_excel('LOTE_1.xls')
 		pass
 
 	if events == WINDOW_CLOSED:
