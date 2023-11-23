@@ -5,13 +5,13 @@ from excel import move_excel
 
 theme('LightBrown1')
 browser, LAYOUT = None, [
-  [Text('Baixar as planilhas.', font=(12)), Push()],
+  [Text(text='Baixar as planilhas.', font=(12)), Push()],
   [
     Button('LOTE 1', size=(7, 1), disabled=False),
     Button('LOTE 2', size=(7, 1), disabled=False),
     Button('AMBOS', size=(7, 1), disabled=False)
   ],
-  [ Text('', key='response excel', visible=False)],
+  [ Text(text='', key='response excel', visible=False)],
   [HSep()],
   [Text('Pegar reclamações da EPTC'), Push()],
   [
@@ -28,7 +28,7 @@ WINDOW = Window('EPTC', LAYOUT)
 def add_response(key: str, text: str, visible: bool, color: str):
 	WINDOW[key].update(visible=visible)
 	WINDOW[key].update(text_color=color)
-	WINDOW[key].update(text)
+	WINDOW[key].update(text=text)
 
 
 while True:
