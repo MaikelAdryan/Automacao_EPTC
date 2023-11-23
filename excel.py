@@ -27,34 +27,31 @@ def clear_dir_download():
   if contains_excel_in_dir_download():
     for excel in os.listdir(DIR_DOWNLOAD):
       os.remove(f'{DIR_DOWNLOAD}/{excel}')
-    return 'Limpo com sucesso!'
+    return ['green', 'Limpo com sucesso!']
   else:
-    return 'Falha ao limpar diretório de downloads.'
+    return ['red', 'Falha ao limpar diretório de downloads.']
 
 
 def move_excel(lote: str):
   try:
-    move(f'{DIR_EXCEL}.xls', f'{DIR_TEMP}{lote}.xls')
-    return ['green', f'Atualizado com sucesso!']
+    move(f'{DIR_EXCEL}.xls', f'{DIR_TEMP}{lote}')
+    return 'atualizado com sucesso'
   except:
-    return ['red', 'Arquivo não encontrado!']
+    return 'não encontrado'
 
 
 def read_excel(excel: str):
   lote = 'LOTE 1' if excel == 'LOTE_1.xls' else 'LOTE 2'
   try:
     with open(f'./temp/{excel}', 'r') as file:
-      return [lote, BeautifulSoup(file.read(), 'html.parser')]
+      file_readed = BeautifulSoup(file.read(), 'html.parser')
+      return extract_values_of_excel(lote, file_readed)
   except:
-    return 'Arquivo não encontrado'
+    return ['red', 'Arquivo não encontrado', {}]
 
 
-def extract_values_of_excel(lote_and_excel_readed):
-  if lote_and_excel_readed == 'Arquivo não encontrado':
-    return ['red', lote_and_excel_readed]
-  
-  lote, excel_readed = lote_and_excel_readed
-  RECLAMAÇÕES = {
+def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
+  RECLAMATIONS = {
     'PROTOCOLO': [],
     'RECLAMANTE': [],
     'SERVIÇO': [],
@@ -67,24 +64,23 @@ def extract_values_of_excel(lote_and_excel_readed):
   # 'DESCRIÇÃO': []
   }
 
-  KEYS = RECLAMAÇÕES.keys()
-  tds = excel_readed.find_all('td')
+  KEYS, TDS = RECLAMATIONS.keys(), EXCEL_READED.find_all('td')
+  
   for i, key in enumerate(KEYS):
-    values = [str(td.text).strip().upper() for td in tds[i::8]]
-    RECLAMAÇÕES[key] = values
-    
-  total = len(RECLAMAÇÕES['PROTOCOLO'])
-
+    values = [str(td.text).strip().upper() for td in TDS[i::8]]
+    RECLAMATIONS[key] = values
+  
+  TOTAL = len(RECLAMATIONS['PROTOCOLO'])
   for key in KEYS:
-    if len(RECLAMAÇÕES[key]) != total:
-      return f'{key}: {len(RECLAMAÇÕES[key])} não bateu com {total}'
+    if len(RECLAMATIONS[key]) != TOTAL:
+      return ['red', f'{key}: {len(RECLAMATIONS[key])} não bateu com {TOTAL}']
+  
+  RECLAMATIONS['PROTOCOLO'] = list(map(REFACTOR_PROTOCOL, RECLAMATIONS['PROTOCOLO']))
+  RECLAMATIONS['SERVIÇO'] 	= list(map(REFACTOR_SERVICES, RECLAMATIONS['SERVIÇO']))
+  RECLAMATIONS['ENDEREÇO']  = list(map(REFACTOR_ADDRESSS, RECLAMATIONS['ENDEREÇO']))
+  RECLAMATIONS['LOTE'] = [LOTE] * TOTAL
 
-  RECLAMAÇÕES['PROTOCOLO'] = list(map(REFACTOR_PROTOCOL, RECLAMAÇÕES['PROTOCOLO']))
-  RECLAMAÇÕES['SERVIÇO'] 	 = list(map(REFACTOR_SERVICES, RECLAMAÇÕES['SERVIÇO']))
-  RECLAMAÇÕES['ENDEREÇO']  = list(map(REFACTOR_ADDRESSS, RECLAMAÇÕES['ENDEREÇO']))
-  RECLAMAÇÕES['LOTE'] = [lote] * total
-
-  return RECLAMAÇÕES
+  return RECLAMATIONS
 
 
 def merged_excels(LOTE_1: dict, LOTE_2: dict):
@@ -95,34 +91,10 @@ def merged_excels(LOTE_1: dict, LOTE_2: dict):
       RECLAMATIONS[key] =  LOTE_1[key] + LOTE_2[key]
     return RECLAMATIONS
   else:
-    return (
-      f'Lote 1 tem {len(LOTE_1_KEYS)} chaves e'
+    return f'Lote 1 tem {len(LOTE_1_KEYS)} chaves e '+\
       f'lote 2 tem {len(LOTE_2_KEYS)} chaves.'
-    )
-
-def fazer_magia():
-  lote_1 = read_excel('LOTE_1.xls')
-  lote_2 = read_excel('LOTE_2.xls')
-  dict_lote1 = extract_values_of_excel(lote_1)
-  dict_lote2 = extract_values_of_excel(lote_2)
-  # dict_ = merged_excels(dict_lote1, dict_lote2)
-  return dict_lote1
 
 
 if __name__ == '__main__':
-  # fazer_magia()
-  # move_excel('LOTE_1')
-  # print(DIR_TEMP)
-  # lote_2 = read_excel('LOTE_2.xls')
-  # protocols = extract_protocol_in_excel(read)
-  # lotes = dict_lote1.update(dict_lote2)
-  # print(lotes)
-  # print(extract_values_of_excel(lote_1))
-  # lote_1 = read_excel('LOTE_1.xls')
-  # dict_lote1 = extract_values_of_excel(lote_1)
-  # get_protocols(dict_lote1)
-  # lote_2 = read_excel('LOTE_2.xls')
-  # dict_lote2 = extract_values_of_excel(lote_2)
-  # dict_ = merged_excels(dict_lote1, dict_lote2)
-  # get_protocols(dict_)
+  readed = read_excel('LOTE_1.xls')
   pass
