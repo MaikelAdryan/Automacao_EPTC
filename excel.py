@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 DIR_ACTUAL = os.getcwd().replace('\\','/')
 DIR_TEMP = f'{DIR_ACTUAL}/temp/'
 
-USER_PATH = os.path.expanduser('~')
+USER_PATH = os.path.expanduser('~').replace('\\','/')
 DIR_DOWNLOAD = f'{USER_PATH}/Downloads'
 FILENAME = 'protocolos_por_fila'
 DIR_EXCEL = f'{DIR_DOWNLOAD}/{FILENAME}'
@@ -20,16 +20,17 @@ def contains_excel_in_dir_download():
 	for excel in os.listdir(DIR_DOWNLOAD):
 		if excel.startswith(FILENAME):
 			return True
-		return False
+	return False
 
 
 def clear_dir_download():
-	if contains_excel_in_dir_download():
-		for excel in os.listdir(DIR_DOWNLOAD):
-			os.remove(f'{DIR_DOWNLOAD}/{excel}')
-		return ['green', 'Limpo com sucesso!']
-	else:
-		return ['red', 'Falha ao limpar diretório de downloads.']
+		try:
+			if contains_excel_in_dir_download():
+				for excel in os.listdir(DIR_DOWNLOAD):
+					os.remove(f'{DIR_DOWNLOAD}/{excel}')
+			return ['green', 'Limpo com sucesso!']
+		except:
+			return ['red', 'Falha ao limpar diretório de downloads.']
 
 
 def move_excel(lote: str):
@@ -65,23 +66,23 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
 	}
 
 	KEYS, TDS = RECLAMATIONS.keys(), EXCEL_READED.find_all('td')
-	
+
 	for i, key in enumerate(KEYS):
 		values = [str(td.text).strip().upper() for td in TDS[i::8]]
 		RECLAMATIONS[key] = values
-	
+
 	TOTAL = len(RECLAMATIONS['PROTOCOLO'])
 	for key in KEYS:
 		if len(RECLAMATIONS[key]) != TOTAL:
 			return ['red', f'{key}: {len(RECLAMATIONS[key])} não bateu com {TOTAL}']
-	
+
 	RECLAMATIONS['PROTOCOLO'] = list(map(REFACTOR_PROTOCOL, RECLAMATIONS['PROTOCOLO']))
 	RECLAMATIONS['SERVIÇO'] 	= list(map(REFACTOR_SERVICES, RECLAMATIONS['SERVIÇO']))
 	RECLAMATIONS['ENDEREÇO']  = list(map(REFACTOR_ADDRESSS, RECLAMATIONS['ENDEREÇO']))
 	RECLAMATIONS['LOTE'] = [LOTE] * TOTAL
-	
-	RECLAMATIONS
-	return ['green', 'Arquivo lido com sucesso']
+
+
+	return RECLAMATIONS
 
 
 def merged_excels(LOTE_1: dict, LOTE_2: dict):
@@ -97,5 +98,4 @@ def merged_excels(LOTE_1: dict, LOTE_2: dict):
 
 
 if __name__ == '__main__':
-	readed = read_excel('LOTE_1.xls')
 	pass

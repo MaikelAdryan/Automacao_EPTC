@@ -3,9 +3,8 @@
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
 from excel import (
-  contains_excel_in_dir_download, clear_dir_download)
+  DIR_TEMP, contains_excel_in_dir_download, clear_dir_download, move_excel)
 from login import USER, PASSWORD
-from excel import DIR_TEMP, move_excel
 import json
 
 URL_EPTC = f'https://{USER}:{PASSWORD}@156poa.procempa.com.br'
@@ -92,6 +91,7 @@ def get_informations_from_reclamation(RECLAMATIONS: dict):
   Returns:
   	[color, text]: a cor a ser preenchida e mensagem de falha ou sucesso
   """
+  
   PROTOCOLS = RECLAMATIONS['PROTOCOLO']
   INFORMATIONS_PROTOCOL = {
     'STPOA_LINHA': [],
