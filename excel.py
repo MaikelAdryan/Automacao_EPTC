@@ -28,7 +28,8 @@ def clear_dir_download():
 			if contains_excel_in_dir_download():
 				for excel in os.listdir(DIR_DOWNLOAD):
 					os.remove(f'{DIR_DOWNLOAD}/{excel}')
-			return ['green', 'Limpo com sucesso!']
+				return ['green', 'Limpo com sucesso!']
+			return ['green', 'Nenhum arquivo encontrado!']
 		except:
 			return ['red', 'Falha ao limpar diretório de downloads.']
 
@@ -44,7 +45,9 @@ def move_excel(lote: str):
 def read_excel(excel: str):
 	lote = 'LOTE 1' if excel == 'LOTE_1.xls' else 'LOTE 2'
 	try:
-		with open(f'./temp/{excel}', 'r') as file:
+		dir_file = f'{DIR_TEMP}{excel}'
+		print(dir_file)
+		with open(dir_file, 'r', encoding='latin-1') as file:
 			file_readed = BeautifulSoup(file.read(), 'html.parser')
 			return extract_values_of_excel(lote, file_readed)
 	except:
@@ -74,15 +77,24 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
 	TOTAL = len(RECLAMATIONS['PROTOCOLO'])
 	for key in KEYS:
 		if len(RECLAMATIONS[key]) != TOTAL:
-			return ['red', f'{key}: {len(RECLAMATIONS[key])} não bateu com {TOTAL}']
+			return [
+				'red', f'{key}: {len(RECLAMATIONS[key])} não bateu com {TOTAL}'
+			]
 
-	RECLAMATIONS['PROTOCOLO'] = list(map(REFACTOR_PROTOCOL, RECLAMATIONS['PROTOCOLO']))
-	RECLAMATIONS['SERVIÇO'] 	= list(map(REFACTOR_SERVICES, RECLAMATIONS['SERVIÇO']))
-	RECLAMATIONS['ENDEREÇO']  = list(map(REFACTOR_ADDRESSS, RECLAMATIONS['ENDEREÇO']))
+	RECLAMATIONS['PROTOCOLO'] = list(
+		map(REFACTOR_PROTOCOL, RECLAMATIONS['PROTOCOLO'])
+	)
+	RECLAMATIONS['SERVIÇO'] 	= list(
+		map(REFACTOR_SERVICES, RECLAMATIONS['SERVIÇO'])
+	)
+	RECLAMATIONS['ENDEREÇO']  = list(map(
+		REFACTOR_ADDRESSS, RECLAMATIONS['ENDEREÇO'])
+	)
 	RECLAMATIONS['LOTE'] = [LOTE] * TOTAL
-
-
-	return RECLAMATIONS
+	# return RECLAMATIONS
+	with open(f'{DIR_ACTUAL}/reclamations.py', 'w', encoding='utf-8') as file_reclamations:
+		file_reclamations.write(f'RECLAMATIONS = {str(RECLAMATIONS)}')
+	return ['green', 'Sucesso!']
 
 
 def merged_excels(LOTE_1: dict, LOTE_2: dict):
@@ -98,4 +110,5 @@ def merged_excels(LOTE_1: dict, LOTE_2: dict):
 
 
 if __name__ == '__main__':
+	print(read_excel('LOTE_1.xls'))
 	pass

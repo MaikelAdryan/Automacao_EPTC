@@ -108,7 +108,7 @@ background-image:url(/sistemas/156/gifs/fundo/background02.png);			}
 <br>
 <h3>Consulta de Serviços Por Logradouro (em andamento):</h3>
 
-<p><b>Fila:SMMU - EPTC - Onibus Lote 2 - Cons?rcio MOB</b>&nbsp; &nbsp; 
+<p><b>Fila:SMMU - EPTC - Onibus Lote 1 - Cons?rcio MOB</b>&nbsp; &nbsp; 
 	
 </p>
 
@@ -126,145 +126,142 @@ background-image:url(/sistemas/156/gifs/fundo/background02.png);			}
 <th class=x>Atraso(dias)</th>
 
 </tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=321999-23-24","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-321999-23-24 </a></td>
-<td class="cor_sim">Debora Orviedo</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">R GEN LIMA E SILVA , 000 - indefinido</td><td class="cor_sim">06/10/2023</td><td class="cor_sim">05/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=328540-23-56","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-328540-23-56 </a></td>
-<td class="">Thais Emanuele Nachtigall Ramos</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV PLINIO KROEFF , 000 - indefinido</td><td class="">12/10/2023</td><td class="">11/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=328552-23-85","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-328552-23-85 </a></td>
-<td class="cor_sim">Alison Rodrigues</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV ADELINO FERREIRA JARDIM , 000 - indefinido</td><td class="cor_sim">12/10/2023</td><td class="cor_sim">11/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=347963-23-70","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-347963-23-70 </a></td>
-<td class="">Renato Silva Moreira</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV BALTAZAR DE OLIVEIRA GARCIA , 000 - indefinido</td><td class="">27/10/2023</td><td class="">26/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=348118-23-15","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-348118-23-15 </a></td>
-<td class="cor_sim">Vera Lucia Melo Alves</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV A J RENNER , 000 - indefinido</td><td class="cor_sim">27/10/2023</td><td class="cor_sim">26/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=327943-23-85","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-327943-23-85 </a></td>
-<td class="">Patrícia Rejane Alves Colleoni</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Veículo</td><td class="">AV ASSIS BRASIL , 3522 - JARDIM LINDOIA</td><td class="">11/10/2023</td><td class="">10/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=338161-23-79","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-338161-23-79 </a></td>
-<td class="cor_sim">Emanuel Freitas Casalli</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Veículo</td><td class="cor_sim">R     IRMAO ANTONIO CECCHIN , 135 - MARIO QUINTANA</td><td class="cor_sim">20/10/2023</td><td class="cor_sim">19/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=347436-23-61","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-347436-23-61 </a></td>
-<td class="">Karolline Lemos Avila</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Veículo</td><td class="">R VOLUNTARIOS DA PATRIA , 1125 - FLORESTA</td><td class="">26/10/2023</td><td class="">25/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=320681-23-29","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-320681-23-29 </a></td>
-<td class="cor_sim">Nora Tomaz Nunes</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV BALTAZAR DE OLIVEIRA GARCIA , 8888 - indefinido</td><td class="cor_sim">05/10/2023</td><td class="cor_sim">04/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=321805-23-93","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-321805-23-93 </a></td>
-<td class="">DANIEL LEMES TOTI</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV ASSIS BRASIL , 3532 - JARDIM LINDOIA</td><td class="">06/10/2023</td><td class="">05/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=321916-23-08","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-321916-23-08 </a></td>
-<td class="cor_sim">Jecimara Aparecida da Silva Monteiro</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV ASSIS BRASIL , 8888 - SARANDI</td><td class="cor_sim">06/10/2023</td><td class="cor_sim">05/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=326906-23-58","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-326906-23-58 </a></td>
-<td class="">Luci Maria Neri</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class=""> AV BALTAZAR DE OLIVEIRA GARCIA , 8888 - indefinido</td><td class="">10/10/2023</td><td class="">09/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=327120-23-56","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-327120-23-56 </a></td>
-<td class="cor_sim">Pamela Tainara Santos</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV MARTIM FELIX BERTA , 1860 - MARIO QUINTANA</td><td class="cor_sim">10/10/2023</td><td class="cor_sim">09/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=326149-23-14","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-326149-23-14 </a></td>
-<td class="">Roberto Cardoso de Freitas</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="">AV ASSIS BRASIL , 4320 - SAO SEBASTIAO</td><td class="">10/10/2023</td><td class="">09/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=326995-23-35","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-326995-23-35 </a></td>
-<td class="cor_sim">Carlos Alberto Ribeiro Batista</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="cor_sim"> AV ASSIS BRASIL , 2449 - PASSO DA AREIA</td><td class="cor_sim">10/10/2023</td><td class="cor_sim">09/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=327919-23-44","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-327919-23-44 </a></td>
-<td class="">LISANDRA AMARAL NUNES </td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">  AV SERTORIO , 6767 - SAO SEBASTIAO</td><td class="">11/10/2023</td><td class="">10/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=327960-23-18","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-327960-23-18 </a></td>
-<td class="cor_sim">Rogério Armani Pinto</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV ASSIS BRASIL , 6515 - SARANDI</td><td class="cor_sim">11/10/2023</td><td class="cor_sim">10/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=330402-23-34","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-330402-23-34 </a></td>
-<td class="">Beatriz de Almeida</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class=""> AV MARTIM FELIX BERTA , 000 - indefinido</td><td class="">14/10/2023</td><td class="">13/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=333578-23-44","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-333578-23-44 </a></td>
-<td class="cor_sim">FERNANDA RODRIGUES DE ARAUJO</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV PROTASIO ALVES , 8144 - MORRO SANTANA  </td><td class="cor_sim">17/10/2023</td><td class="cor_sim">16/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=333892-23-27","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-333892-23-27 </a></td>
-<td class="">Maria Aparecida Fagundes Costa</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV ASSIS BRASIL , 888 - SANTA M GORETTI</td><td class="">17/10/2023</td><td class="">16/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=334222-23-26","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-334222-23-26 </a></td>
-<td class="cor_sim">BRASILINO BORGES DA SILVA</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV CRISTOVAO COLOMBO , 0 - indefinido</td><td class="cor_sim">17/10/2023</td><td class="cor_sim">16/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=334256-23-17","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-334256-23-17 </a></td>
-<td class="">DIEGO DE OLIVEIRA CABREIRA </td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class=""> AV FARRAPOS , 558 - FLORESTA</td><td class="">17/10/2023</td><td class="">16/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=339653-23-80","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-339653-23-80 </a></td>
-<td class="cor_sim">Anita Braga </td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="cor_sim">AV PADRE LEOPOLDO BRENTANO , 110 - FARRAPOS</td><td class="cor_sim">20/10/2023</td><td class="cor_sim">19/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=342984-23-01","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-342984-23-01 </a></td>
-<td class="">Aline Pereira Luiz</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="">R DR OTAVIO SANTOS , 200 - JARDIM SABARA  </td><td class="">24/10/2023</td><td class="">23/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=334655-23-89","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-334655-23-89 </a></td>
-<td class="cor_sim">MARIA CELINA SILVA FERIO</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV ASSIS BRASIL , 200 - SAO JOAO</td><td class="cor_sim">18/10/2023</td><td class="cor_sim">17/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=334990-23-83","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-334990-23-83 </a></td>
-<td class="">JENIFER LUMATIZ</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV ASSIS BRASIL , 8888 - SARANDI</td><td class="">18/10/2023</td><td class="">17/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=335910-23-04","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-335910-23-04 </a></td>
-<td class="cor_sim">Leandro Pinto de Britto</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">VDT OBIRICI , 0 - indefinido</td><td class="cor_sim">18/10/2023</td><td class="cor_sim">17/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=335970-23-27","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-335970-23-27 </a></td>
-<td class="">Angela Soares Gomes da Silveira</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV PRESIDENTE FRANKLIN ROOSEVELT , 638 - SAO GERALDO</td><td class="">19/10/2023</td><td class="">18/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=335989-23-75","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-335989-23-75 </a></td>
-<td class="cor_sim">JOSE EGIDIO LISBOA BRENER</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV    PRESIDENTE CASTELO BRANCO , 000 - indefinido</td><td class="cor_sim">19/10/2023</td><td class="cor_sim">18/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=337562-23-01","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-337562-23-01 </a></td>
-<td class="">Arminda da Silva Gomes </td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class=""> AV PLINIO KROEFF , 1100 - SARANDI</td><td class="">19/10/2023</td><td class="">18/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=349083-23-30","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-349083-23-30 </a></td>
-<td class="cor_sim">Tabata Fontoura</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="cor_sim"> PCA RUI BARBOSA , 10 - CENTRO HISTORIC</td><td class="cor_sim">27/10/2023</td><td class="cor_sim">26/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=342636-23-29","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-342636-23-29 </a></td>
-<td class="">Débora de Souza Abreu</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV BRASIL , 888 - NAVEGANTES</td><td class="">23/10/2023</td><td class="">22/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=352287-23-53","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-352287-23-53 </a></td>
-<td class="cor_sim">Fabiane Cyrre Maglia</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="cor_sim">R DR OTAVIO SANTOS , 570 - JARDIM SABARA  </td><td class="cor_sim">31/10/2023</td><td class="cor_sim">30/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=344230-23-82","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-344230-23-82 </a></td>
-<td class="">TANIA FONSECA</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV CRISTOVAO COLOMBO , 545 - INDEPENDENCIA</td><td class="">24/10/2023</td><td class="">23/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=344645-23-57","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-344645-23-57 </a></td>
-<td class="cor_sim">ANDRESSA OLIVEIRA DESIDÉRIO</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim"> AV A J RENNER , 332 - HUMAITA</td><td class="cor_sim">25/10/2023</td><td class="cor_sim">24/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=344695-23-31","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-344695-23-31 </a></td>
-<td class="">VIVIANE CRISTIANE ATAIDE DA SILVEIRA</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV A J RENNER , 864 - FARRAPOS</td><td class="">25/10/2023</td><td class="">24/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=345154-23-24","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-345154-23-24 </a></td>
-<td class="cor_sim">Tania Teresinha da Cruz Fonseca</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV CRISTOVAO COLOMBO , 545 - INDEPENDENCIA</td><td class="cor_sim">25/10/2023</td><td class="cor_sim">24/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=345248-23-06","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-345248-23-06 </a></td>
-<td class="">ALINE OLIVERIA DESIDERIO</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class=""> AV A J RENNER , 580 - FARRAPOS</td><td class="">25/10/2023</td><td class="">24/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=349559-23-35","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-349559-23-35 </a></td>
-<td class="cor_sim">RAFAEL MOREIRA ALMEIDA</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">PSL ESTACAO AEROPORTO , 000 - indefinido</td><td class="cor_sim">28/10/2023</td><td class="cor_sim">27/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=350514-23-03","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-350514-23-03 </a></td>
-<td class="">Carlos Enrique Castro</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV FARRAPOS , 000 - indefinido</td><td class="">30/10/2023</td><td class="">29/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=350798-23-34","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-350798-23-34 </a></td>
-<td class="cor_sim">Janaina Silva Bittencourt</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">R GUADALAJARA , 000 - indefinido</td><td class="cor_sim">30/10/2023</td><td class="cor_sim">29/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=352099-23-28","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-352099-23-28 </a></td>
-<td class="">Janete Placito da Rosa</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV ASSIS BRASIL , 000 - indefinido</td><td class="">31/10/2023</td><td class="">30/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=352298-23-35","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-352298-23-35 </a></td>
-<td class="cor_sim">Ana Marilete Pinto</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">PCA DOM FELICIANO , 000 - indefinido</td><td class="cor_sim">31/10/2023</td><td class="cor_sim">30/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=351948-23-23","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-351948-23-23 </a></td>
-<td class="">Mônica Zuliani</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV DANTE ANGELO PILLA , 700 - COSTA E SILVA  </td><td class="">30/10/2023</td><td class="">29/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=352348-23-84","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-352348-23-84 </a></td>
-<td class="cor_sim">MARIA ROSELI FREITAS RODRIGUES</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV ASSIS BRASIL , 00 - indefinido</td><td class="cor_sim">31/10/2023</td><td class="cor_sim">30/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=353766-23-93","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-353766-23-93 </a></td>
-<td class="">Márcio Roberto Naidon do Carmo</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV PRESIDENTE FRANKLIN ROOSEVELT , 000 - indefinido</td><td class="">01/11/2023</td><td class="">31/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
-onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=355230-23-05","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
-355230-23-05 </a></td>
-<td class="cor_sim">Eduardo Klein</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="cor_sim">PCA RUI BARBOSA , 888 - CENTRO HISTORIC</td><td class="cor_sim">01/11/2023</td><td class="cor_sim">31/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr></TABLE>Total registros:47</BODY>
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=319432-23-98","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+319432-23-98 </a></td>
+<td class="cor_sim">NAIRA AMARANTE</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">PCA PEREIRA PAROBE , 888 - CENTRO HISTORIC</td><td class="cor_sim">04/10/2023</td><td class="cor_sim">03/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=319473-23-80","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+319473-23-80 </a></td>
+<td class="">Laurita Ivone Carvalho</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class=""> AV TOLEDO PIZA , 8888 - SARANDI</td><td class="">04/10/2023</td><td class="">03/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=341025-23-61","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+341025-23-61 </a></td>
+<td class="cor_sim">Isadora Soares Korpaliski</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="cor_sim">AV TOLEDO PIZA , 000 - indefinido</td><td class="cor_sim">23/10/2023</td><td class="cor_sim">22/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=332860-23-01","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+332860-23-01 </a></td>
+<td class="">Roberta Fernanda Santos Fortes</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">R JACOB PHILIPPSEN , 000 - indefinido</td><td class="">17/10/2023</td><td class="">16/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=348090-23-17","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+348090-23-17 </a></td>
+<td class="cor_sim">Maximiliano da Silva Correa</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV BRASILIANO INDIO DE MORAES , 000 - indefinido</td><td class="cor_sim">27/10/2023</td><td class="cor_sim">26/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=349501-23-91","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+349501-23-91 </a></td>
+<td class="">Luize da Rosa Menna Barreto</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV ASSIS BRASIL , 000 - indefinido</td><td class="">28/10/2023</td><td class="">27/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=332861-23-59","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+332861-23-59 </a></td>
+<td class="cor_sim">Vinícius Guez Chagas</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Veículo</td><td class="cor_sim">PCA RUI BARBOSA , 000 - indefinido</td><td class="cor_sim">17/10/2023</td><td class="cor_sim">16/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=340924-23-40","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+340924-23-40 </a></td>
+<td class="">Moziah Antonio Fenalti</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Veículo</td><td class="">AV ASSIS BRASIL , 00 - indefinido</td><td class="">22/10/2023</td><td class="">21/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=349436-23-00","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+349436-23-00 </a></td>
+<td class="cor_sim">SANDRA CLEONICE BORBA VIVIAN</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Veículo</td><td class="cor_sim">AV SERTORIO , 00 - indefinido</td><td class="cor_sim">28/10/2023</td><td class="cor_sim">27/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=319705-23-07","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+319705-23-07 </a></td>
+<td class="">MARLEI WEIDE</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">R VINTE QUATRO DE OUTUBRO , 888 - MOINHOS VENTO</td><td class="">04/10/2023</td><td class="">03/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=320266-23-71","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+320266-23-71 </a></td>
+<td class="cor_sim">JOAO GILMAR FERNANDES TAVARES JUNIOR</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV SOUZA MELO , 000 - indefinido</td><td class="cor_sim">05/10/2023</td><td class="cor_sim">04/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=321421-23-71","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+321421-23-71 </a></td>
+<td class="">Ana Paula da Silva</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV ASSIS BRASIL , 1818 - PASSO DA AREIA</td><td class="">05/10/2023</td><td class="">04/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=322657-23-25","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+322657-23-25 </a></td>
+<td class="cor_sim">Airton Pereia dos Santos</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV ASSIS BRASIL , 8888 - SARANDI</td><td class="cor_sim">06/10/2023</td><td class="cor_sim">05/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=322871-23-82","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+322871-23-82 </a></td>
+<td class="">Giovana Vargas</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV BERNARDINO SILVEIRA DE AMORIM , 8888 - indefinido</td><td class="">06/10/2023</td><td class="">05/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=324116-23-34","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+324116-23-34 </a></td>
+<td class="cor_sim">CARMEM SILVA DE MORAES FILA</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">R GEN TELINO CHAGASTELLES , 430 - PARQUE STA FE  </td><td class="cor_sim">09/10/2023</td><td class="cor_sim">08/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=325193-23-03","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+325193-23-03 </a></td>
+<td class="">Daiana Rasquinha Machado</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class=""> AV ASSIS BRASIL , 8888 - SARANDI</td><td class="">09/10/2023</td><td class="">08/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=326157-23-62","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+326157-23-62 </a></td>
+<td class="cor_sim">Perci José Mariano</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV ASSIS BRASIL , 000 - indefinido</td><td class="cor_sim">10/10/2023</td><td class="cor_sim">09/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=327147-23-48","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+327147-23-48 </a></td>
+<td class="">VIVIAN DOS SANTOS</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV ASSIS BRASIL , 888 - SANTA M GORETTI</td><td class="">10/10/2023</td><td class="">09/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=320066-23-16","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+320066-23-16 </a></td>
+<td class="cor_sim">CATIANE IZABEL FORNARI</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Veículo</td><td class="cor_sim"> AV SERTORIO , 4421 - JARDIM FLORESTA</td><td class="cor_sim">04/10/2023</td><td class="cor_sim">03/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=351716-23-72","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+351716-23-72 </a></td>
+<td class="">Maribel Zen</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Veículo</td><td class=""> PCA PEREIRA PAROBE , 10 - CENTRO HISTORIC</td><td class="">30/10/2023</td><td class="">29/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=328213-23-03","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+328213-23-03 </a></td>
+<td class="cor_sim">CATIA PAZ DE ASSUNÇÃO</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV ASSIS BRASIL , 888 - SANTA M GORETTI</td><td class="cor_sim">11/10/2023</td><td class="cor_sim">10/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=334406-23-99","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+334406-23-99 </a></td>
+<td class="">Viviane Alvim</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV INDEPENDENCIA , 155 - CENTRO HISTORIC</td><td class="">18/10/2023</td><td class="">17/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=335737-23-47","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+335737-23-47 </a></td>
+<td class="cor_sim">Carla Rosana Bertussi</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV INDEPENDENCIA , 888 - INDEPENDENCIA</td><td class="cor_sim">18/10/2023</td><td class="cor_sim">17/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=338384-23-39","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+338384-23-39 </a></td>
+<td class="">GUIOMAR SILVA DA ROCHA</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV SERTORIO , 4501 - JARDIM FLORESTA</td><td class="">20/10/2023</td><td class="">19/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=339732-23-93","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+339732-23-93 </a></td>
+<td class="cor_sim">KELLI CRISTINA DOS SANTOS BARBOSA</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">R SILVESTRE FELIX RODRIGUES , 0 - indefinido</td><td class="cor_sim">20/10/2023</td><td class="cor_sim">19/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=339747-23-54","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+339747-23-54 </a></td>
+<td class="">ELIANE SILVEIRA DOS SANTOS FERREIRA </td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">PCA RUI BARBOSA , 0 - indefinido</td><td class="">20/10/2023</td><td class="">19/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=340524-23-36","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+340524-23-36 </a></td>
+<td class="cor_sim">Carlos Alberto Macagnan</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV ASSIS BRASIL , 2972 - CRISTO REDENTOR</td><td class="cor_sim">22/10/2023</td><td class="cor_sim">21/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=344942-23-08","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+344942-23-08 </a></td>
+<td class="">Maria Aparecida Fagundes Costa</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class=""> AV DOS GAUCHOS , 1260 - SARANDI</td><td class="">25/10/2023</td><td class="">24/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=347767-23-03","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+347767-23-03 </a></td>
+<td class="cor_sim">KELLI CRISTINA DOS SANTOS BARBOSA</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim"> R SILVESTRE FELIX RODRIGUES , 795 - COSTA E SILVA  </td><td class="cor_sim">26/10/2023</td><td class="cor_sim">25/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=348656-23-05","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+348656-23-05 </a></td>
+<td class="">Karem Adriane de Oliveira Moreira</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV BALTAZAR DE OLIVEIRA GARCIA , 4833 - RUBEM BERTA</td><td class="">27/10/2023</td><td class="">26/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=349389-23-98","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+349389-23-98 </a></td>
+<td class="cor_sim">Kelly Cristina dos Santos Barbosa</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim"> R SILVESTRE FELIX RODRIGUES , 801 - COSTA E SILVA  </td><td class="cor_sim">27/10/2023</td><td class="cor_sim">26/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=349392-23-02","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+349392-23-02 </a></td>
+<td class="">Jose Paulo Rodrigues Soares</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">R ALFREDO RODRIGUES , 0 - indefinido</td><td class="">27/10/2023</td><td class="">26/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=349397-23-31","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+349397-23-31 </a></td>
+<td class="cor_sim">RENATA LUNARDI SOARES</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">R SILVESTRE FELIX RODRIGUES , 0 - indefinido</td><td class="cor_sim">27/10/2023</td><td class="cor_sim">26/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=352066-23-84","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+352066-23-84 </a></td>
+<td class="">Luciane Souza Nascimento</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">AV ASSIS BRASIL , 4320 - SAO SEBASTIAO</td><td class="">31/10/2023</td><td class="">30/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=352080-23-86","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+352080-23-86 </a></td>
+<td class="cor_sim">Murilo Lencina Priebe</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV TOLEDO PIZA , 000 - indefinido</td><td class="cor_sim">31/10/2023</td><td class="cor_sim">30/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=352342-23-07","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+352342-23-07 </a></td>
+<td class="">KELLI CRISTINA DOS SANTOS BARBOSA</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">R SILVESTRE FELIX RODRIGUES , 000 - indefinido</td><td class="">31/10/2023</td><td class="">30/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=351182-23-85","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+351182-23-85 </a></td>
+<td class="cor_sim">Neida da Silva Ourique</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV ASSIS BRASIL , 6525 - SARANDI</td><td class="cor_sim">30/10/2023</td><td class="cor_sim">29/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=351206-23-04","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+351206-23-04 </a></td>
+<td class="">Diego Caetano da Silva</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="">R MARECHAL JOSE INACIO DA SILVA , 355 - PASSO DA AREIA</td><td class="">30/10/2023</td><td class="">29/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=351922-23-80","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+351922-23-80 </a></td>
+<td class="cor_sim">ALICE FISCHER VIEIRA</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">R VINTE QUATRO DE OUTUBRO , 888 - MOINHOS VENTO</td><td class="cor_sim">30/10/2023</td><td class="cor_sim">29/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=353511-23-26","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+353511-23-26 </a></td>
+<td class="">Jocemar Souza dos Santos</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class=""> PCA RUI BARBOSA , 8888 - CENTRO HISTORIC</td><td class="">31/10/2023</td><td class="">30/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=353679-23-32","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+353679-23-32 </a></td>
+<td class="cor_sim">Quelen Regina da Silva Gabriel</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Tripulação</td><td class="cor_sim">AV MARILAND , 23  - SAO JOAO</td><td class="cor_sim">31/10/2023</td><td class="cor_sim">30/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=354457-23-38","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+354457-23-38 </a></td>
+<td class="">Patrícia da Silva Malcorra</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="">PCA PEREIRA PAROBE , 888 - CENTRO HISTORIC</td><td class="">01/11/2023</td><td class="">31/12/2023</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=355319-23-74","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+355319-23-74 </a></td>
+<td class="cor_sim">Quelen Regina da Silva Gabriel</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="cor_sim"> AV MARILAND , 1113 - MONT SERRAT</td><td class="cor_sim">01/11/2023</td><td class="cor_sim">31/12/2023</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=355437-23-89","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+355437-23-89 </a></td>
+<td class="">Jair Nunes</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="">AV FRANCISCO SILVEIRA BITENCOURT , 1818 - STA ROSA LIMA  </td><td class="">02/11/2023</td><td class="">01/01/2024</td><td class="">60</td><td class="">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=355953-23-00","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+355953-23-00 </a></td>
+<td class="cor_sim">Letícia Sofka Mazzi</td><td class="cor_sim">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="cor_sim">PCA RUI BARBOSA , 000 - indefinido</td><td class="cor_sim">03/11/2023</td><td class="cor_sim">02/01/2024</td><td class="cor_sim">60</td><td class="cor_sim">-</td></tr><tr class=''txtgeral><td width=120px align=center><a href='' style='font-size:8pt;' 
+onclick='window.open("/sistemas/156/Tramita/Consulta_FalaPoa_Geo.php?protocolo=357009-23-91","detalhes","width=960,height=600,scrollbars=1"); return false;'> 
+357009-23-91 </a></td>
+<td class="">CLAUDIA GOMES WEBER</td><td class="">SMIM/EPTC - Reclamação - Modal Ônibus - Viagem</td><td class="">R DOS MAIAS , 1103 - STA ROSA LIMA  </td><td class="">04/11/2023</td><td class="">03/01/2024</td><td class="">60</td><td class="">-</td></tr></TABLE>Total registros:46</BODY>
 </HTML>
