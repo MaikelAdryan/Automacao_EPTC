@@ -80,19 +80,16 @@ def download_excel(lote: int):
       return ['red', 'Falha ao baixar excel!']
   return ['green', f'Excel LOTE {lote} {moved}!']
 
-from reclamations import RECLAMATIONS
 
-def get_informations_from_reclamation(RECLAMATIONS: dict = RECLAMATIONS):
-  """Função que pega todos os dados de cada protocolo das reclamações e
-  cria um arquivo json contendo todos os dados
-  
-  Args:
-    RECLAMATIONS (dict): Dados dos excels contendo as reclamações
-  
+def get_informations_from_reclamation():
+  """Função para pegar as informações da reclamação
+
   Returns:
-    [color, text]: a cor a ser preenchida e mensagem de falha ou sucesso
+    message [cor, mensagem]: retorna uma mensagem de erro e falha
   """
-  
+
+  from reclamations import RECLAMATIONS
+
   PROTOCOLS = RECLAMATIONS['PROTOCOLO']
   INFORMATIONS_PROTOCOL = {
     'STPOA_LINHA': [],
