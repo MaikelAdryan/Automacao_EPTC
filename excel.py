@@ -4,13 +4,12 @@ import os
 from shutil import move
 from bs4 import BeautifulSoup
 
-DIR_ACTUAL = os.getcwd().replace('\\','/')
+DIR_ACTUAL = os.getcwd().replace('\\', '/')
 DIR_TEMP = f'{DIR_ACTUAL}/temp/'
 
-USER_PATH = os.path.expanduser('~').replace('\\','/')
+USER_PATH = os.path.expanduser('~').replace('\\', '/')
 DIR_DOWNLOAD = f'{USER_PATH}/Downloads'
 FILENAME = 'protocolos_por_fila'
-DIR_EXCEL = f'{DIR_DOWNLOAD}/{FILENAME}'
 
 REFACTOR_SERVICES = lambda service: service.split(' - ')[-1]
 REFACTOR_ADDRESSS = lambda address: address.split(' ,')[0]
@@ -34,7 +33,7 @@ def clear_dir_download():
 
 def move_excel(lote: str):
   try:
-    move(f'{DIR_EXCEL}.xls', f'{DIR_TEMP}{lote}')
+    move(f'{DIR_DOWNLOAD}/{FILENAME}.xls', f'{DIR_TEMP}{lote}')
     return 'atualizado com sucesso'
   except:
     return 'não encontrado'
@@ -44,7 +43,6 @@ def read_excel(excel: str):
   lote = 'LOTE 1' if excel == 'LOTE_1.xls' else 'LOTE 2'
   try:
     dir_file = f'{DIR_TEMP}{excel}'
-    print(dir_file)
     with open(dir_file, 'r', encoding='latin-1') as file:
       file_readed = BeautifulSoup(file.read(), 'html.parser')
       return extract_values_of_excel(lote, file_readed)
@@ -89,7 +87,6 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
     REFACTOR_ADDRESSS, RECLAMATIONS['ENDEREÇO'])
   )
   RECLAMATIONS['LOTE'] = [LOTE] * TOTAL
-  # return RECLAMATIONS
   with open(f'{DIR_ACTUAL}/reclamations.py', 'w', encoding='utf-8') as file_reclamations:
     file_reclamations.write(f'RECLAMATIONS = {str(RECLAMATIONS)}')
   
