@@ -24,7 +24,7 @@ browser, LAYOUT = None, [
     Push(),
     Button('LOTE 1', key='extract lote 1', size=(7, 1), disabled=False),
     Button('LOTE 2', key='extract lote 2', size=(7, 1), disabled=False),
-    Button('EXTRAIR', key='extract lotes', size=(7, 1), disabled=False),
+    Button('EXTRAIR', key='extract relamations', size=(7, 1), disabled=False),
     Push()
   ],
   [Text('', key='response readed', visible=False)],
@@ -64,7 +64,7 @@ while True:
     color, response = read_excel('LOTE_2.xls')
     add_response('response readed', response, True, color)
 
-  if events == 'extract lotes':
+  if events == 'extract relamations':
     get_informations_from_reclamation()
 
   if events == WINDOW_CLOSED:
