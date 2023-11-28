@@ -3,8 +3,8 @@
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
 from excel import (
-  DIR_TEMP, contains_excel_in_dir_download, clear_dir_download, move_excel)
-from login import USER, PASSWORD
+  DIR_TEMP, clear_dir_download, move_excel)
+from login_eptc import USER, PASSWORD
 import json
 
 URL_EPTC = f'https://{USER}:{PASSWORD}@156poa.procempa.com.br'
@@ -70,12 +70,10 @@ def download_excel(lote: int):
   match lote:
     case 1:
       goto_url_download(URL_EXCEL_LOTE_1)
-      if contains_excel_in_dir_download():
-        moved = move_excel('LOTE_1.xls')
+      moved = move_excel('LOTE_1.xls')
     case 2:
       goto_url_download(URL_EXCEL_LOTE_2)
-      if contains_excel_in_dir_download():
-        moved = move_excel('LOTE_2.xls')
+      moved = move_excel('LOTE_2.xls')
     case _ :
       return ['red', 'Falha ao baixar excel!']
   return ['green', f'Excel LOTE {lote} {moved}!']
@@ -87,8 +85,10 @@ def get_informations_from_reclamation():
   Returns:
     message [cor, mensagem]: retorna uma mensagem de erro e falha
   """
-
-  from reclamations import RECLAMATIONS
+  try:
+    from reclamations import RECLAMATIONS
+  except:
+    return ['red', 'arquivos não encontrados']
 
   PROTOCOLS = RECLAMATIONS['PROTOCOLO']
   INFORMATIONS_PROTOCOL = {
@@ -124,6 +124,7 @@ def get_informations_from_reclamation():
           INFORMATIONS_PROTOCOL[key].append(text)
       except:
         return ['red', 'Baixe a planilha novamente!']
+    
     close_firefox(BROWSER)
     for key in INFORMATIONS_KEYS:
       TOTAL_KEY = len(INFORMATIONS_PROTOCOL[key])
@@ -158,5 +159,5 @@ def close_firefox(browser: Firefox):
 
 
 if __name__ == '__main__':
-  get_informations_from_reclamation()
+  # print(get_informations_from_reclamation())
   pass
