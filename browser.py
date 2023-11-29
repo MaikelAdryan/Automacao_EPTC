@@ -126,13 +126,27 @@ def get_informations_from_reclamation():
         return ['red', 'Baixe a planilha novamente!']
     
     close_firefox(BROWSER)
+    
     for key in INFORMATIONS_KEYS:
       TOTAL_KEY = len(INFORMATIONS_PROTOCOL[key])
       if TOTAL != TOTAL_KEY:
-        return f'Total não bate! {key} com {TOTAL_KEY} valores é difer'+\
-          f'ente de {TOTAL}.'
+        return f'Total não bate! {key} com {TOTAL_KEY} valores é dife'+\
+          f'rente de {TOTAL}.'
       else:
         RECLAMATIONS[key] = INFORMATIONS_PROTOCOL[key]
+    
+    EMP = []
+    for car in RECLAMATIONS['STPOA_PREFIXO']:
+      if car.startswith(('66', '67', '68')):
+        EMP.append(1)
+      elif car.startswith(('64', '65')):
+        EMP.append(3)
+      elif car.startswith('61'):
+        EMP.append(4)
+      else:
+        EMP.append(21)
+
+    RECLAMATIONS['EMP'] = EMP
     
     try:
       with open(f'{DIR_TEMP}{FILE_NAME}', 'w', encoding='utf-8') as FILE:
