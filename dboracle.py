@@ -1,5 +1,6 @@
 import oracledb
 import configparser
+from json import load
 
 FILE_CONFIG = 'dboracle.ini'
 CONFIG = configparser.ConfigParser()
@@ -58,7 +59,8 @@ def insert_reclamation(reclamation: dict):
           STPOA_MOTIVO,
           STPOA_DATA,
           STPOA_HORA,
-          DESCRICAO
+          DESCRICAO,
+          ORIGEM_RECLAMACAO
         ) VALUES (
           :EMP,
           S_DMB700.NEXTVAL,
@@ -66,8 +68,8 @@ def insert_reclamation(reclamation: dict):
           :RECLAMANTE,
           :SERVICO,
           :ENDERECO,
-          TO_DATE(:DATA_ABERTURA, 'DD/MM/YYYY'),
-          TO_DATE(:DATA_VENCIMENO, 'DD/MM/YYYY'),
+          :DATA_ABERTURA,
+          :DATA_VENCIMENO,
           :PRAZO_DIAS,
           :ATRASO_DIAS,
           :LOTE,
@@ -75,9 +77,10 @@ def insert_reclamation(reclamation: dict):
           :STPOA_SENTIDO,
           :STPOA_PREFIXO,
           :STPOA_MOTIVO,
-          TO_DATE(:STPOA_DATA, 'DD/MM/YYYY'),
-          TO_DATE(:STPOA_HORA, 'HH24:MI'),
-          :DESCRICAO
+          :STPOA_DATA,
+          :STPOA_HORA,
+          :DESCRICAO,
+          :ORIGEM_RECLAMACAO
         )
       """
       CURSOR.execute(
@@ -92,37 +95,79 @@ def insert_reclamation(reclamation: dict):
         PRAZO_DIAS=reclamation['PRAZO_DIAS'],
         ATRASO_DIAS=reclamation['ATRASO_DIAS'],
         LOTE=reclamation['LOTE'],
-        STPO_LINHA=reclamation['STPO_LINHA'],
+        STPO_LINHA=reclamation['STPOA_LINHA'],
         STPOA_SENTIDO=reclamation['STPOA_SENTIDO'],
         STPOA_PREFIXO=reclamation['STPOA_PREFIXO'],
         STPOA_MOTIVO=reclamation['STPOA_MOTIVO'],
         STPOA_DATA=reclamation['STPOA_DATA'],
         STPOA_HORA=reclamation['STPOA_HORA'],
-        DESCRICAO=reclamation['DESCRICAO']
+        DESCRICAO=reclamation['DESCRICAO'],
+        ORIGEM_RECLAMACAO=reclamation['ORIGEM_RECLAMACAO']
       )
       CONNECTION.commit()
 
 
+def send_reclamation_to_dboracle():
+  RECLAMATIONS, TOTAL = {}, 0
+  try:
+    with open('temp/dados.json', 'r', encoding='utf-8') as FILE_JSON:
+      RECLAMATIONS = load(FILE_JSON)
+      TOTAL = len(RECLAMATIONS['PROTOCOLO'])
+      # print(RECLAMATIONS['PROTOCOLO'])
+      # insert_reclamation()
+  except:
+    return ['red', 'Falha ao carregar os dados.']
+  for i in range(TOTAL):
+    JSON = {
+      'EMP': RECLAMATIONS['EMP'][i],
+      'PROTOCOLO': RECLAMATIONS['PROTOCOLO'][i],
+      'RECLAMANTE': RECLAMATIONS['RECLAMANTE'][i],
+      'SERVICO': RECLAMATIONS['SERVIÇO'][i],
+      'ENDERECO': RECLAMATIONS['ENDEREÇO'][i],
+      'DATA_ABERTURA': RECLAMATIONS['DATA_ABERTURA'][i],
+      'DATA_VENCIMENO': RECLAMATIONS['DATA_VENCIMENTO'][i],
+      'PRAZO_DIAS': RECLAMATIONS['PRAZO_DIAS'][i],
+      'ATRASO_DIAS': RECLAMATIONS['ATRASO_DIAS'][i],
+      'LOTE': RECLAMATIONS['LOTE'][i],
+      'STPOA_LINHA': RECLAMATIONS['STPOA_LINHA'][i],
+      'STPOA_SENTIDO': RECLAMATIONS['STPOA_SENTIDO'][i],
+      'STPOA_PREFIXO': RECLAMATIONS['STPOA_PREFIXO'][i],
+      'STPOA_MOTIVO': RECLAMATIONS['STPOA_MOTIVO'][i],
+      'STPOA_DATA': RECLAMATIONS['STPOA_DATA'][i],
+      'STPOA_HORA': RECLAMATIONS['STPOA_HORA'][i],
+      'DESCRICAO': RECLAMATIONS['DESCRICAO'][i],
+      'ORIGEM_RECLAMACAO': RECLAMATIONS['ORIGEM_RECLAMACAO'][i]
+    }
+    try:
+      insert_reclamation(JSON)
+      print(f'{i} concluido')
+    except:
+      print('An exception occurred')
+
+
+
 if __name__ == '__main__':
-  RECLAMATION = {
-    'EMP': 21,
-    'PROTOCOLO': '319432-23-98',
-    'RECLAMANTE': 'NAIRA AMARANTE',
-    'SERVICO': 'TRIPULAÇÃO',
-    'ENDERECO': 'PCA PEREIRA PAROBE',
-    'DATA_ABERTURA': '04/10/2023',
-    'DATA_VENCIMENO': '03/12/2023',
-    'PRAZO_DIAS': '60',
-    'ATRASO_DIAS': '-',
-    'LOTE': 'LOTE 1',
-    'STPO_LINHA': '610',
-    'STPOA_SENTIDO': 'BC',
-    'STPOA_PREFIXO': '6610',
-    'STPOA_MOTIVO': 'TESTE_NGS',
-    'STPOA_DATA': '04/10/2023',
-    'STPOA_HORA': '14:30',
-    'DESCRICAO': 'test'
-  }
-  insert_reclamation(RECLAMATION)
+  print(send_reclamation_to_dboracle())
+  # RECLAMATION = {
+  #   'EMP': 21,
+  #   'PROTOCOLO': '319432-23-98',
+  #   'RECLAMANTE': 'NAIRA AMARANTE',
+  #   'SERVICO': 'TRIPULAÇÃO',
+  #   'ENDERECO': 'PCA PEREIRA PAROBE',
+  #   'DATA_ABERTURA': '04/10/2023',
+  #   'DATA_VENCIMENO': '03/12/2023',
+  #   'PRAZO_DIAS': '60',
+  #   'ATRASO_DIAS': '-',
+  #   'LOTE': 'LOTE 1',
+  #   'STPOA_LINHA': '610',
+  #   'STPOA_SENTIDO': 'BC',
+  #   'STPOA_PREFIXO': '6610',
+  #   'STPOA_MOTIVO': 'TESTE_NGS',
+  #   'STPOA_DATA': '04/10/2023',
+  #   'STPOA_HORA': '14:30',
+  #   'DESCRICAO': 'test',
+  #   'ORIGEM_RECLAMACAO': 'test'
+  # }
+  # insert_reclamation(RECLAMATION)
   # print(get_protocols())
   pass
