@@ -52,38 +52,30 @@ def close_firefox(browser: Firefox):
     return 'Falha ao fechar o Firefox.'
 
 
-def goto_url_download(URLS_LOTES: list, EXCEL_FILENAME: str):
-  BROWSER = start_firefox()
-  if len(URLS_LOTES) == 1:
-    try:
-      BROWSER.get(URLS_LOTES[0])
-      BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
-      close_firefox(BROWSER)
-      move_excel(EXCEL_FILENAME)
-      return ['green', f'{EXCEL_FILENAME} baixado com sucesso!']
-    except:
-      return ['red', 'Falha ao baixar.']
-  else:
-    try:
-      for url in URLS_LOTES:
-        BROWSER.get(url)
-        BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
-      close_firefox(BROWSER)
-      return ['green', 'Sucesso!']
-    except:
-      return ['red', 'Falha ao baixar.']
-
-
-def download_excel(lote: int):
+def download_excel(lote :int = 0):
   clear_dir_download()
-  match lote:
-    case 1:
-      goto_url_download([URL_EXCEL_LOTE_1], 'LOTE_1.xls')
-    case 2:
-      goto_url_download([URL_EXCEL_LOTE_2], 'LOTE_2.xls')
-    case 3:
-      goto_url_download([URL_EXCEL_LOTE_1, URL_EXCEL_LOTE_2])
-  
+  BROWSER = start_firefox()
+  try:
+    match lote:
+      case 1:
+        BROWSER.get(URL_EXCEL_LOTE_1)
+        BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
+        move_excel('LOTE_1.xls')
+      case 2:
+        BROWSER.get(URL_EXCEL_LOTE_2)
+        BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
+        move_excel('LOTE_2.xls')
+      case _:
+        BROWSER.get(URL_EXCEL_LOTE_1)
+        BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
+        move_excel('LOTE_1.xls')
+        BROWSER.get(URL_EXCEL_LOTE_2)
+        BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
+        move_excel('LOTE_2.xls')
+    close_firefox(BROWSER)
+  except:
+    print('An exception occurred')
+  close_firefox(BROWSER)
 
 
 def get_informations_from_reclamation():
@@ -200,8 +192,6 @@ def get_informations_from_reclamation():
       return ['red', 'Falha ao salvar os dados.']
 
 
-
-
 if __name__ == '__main__':
-  download_excel(3)
+  download_excel()
   pass
