@@ -2,8 +2,7 @@
 
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
-from excel import (
-  DIR_TEMP, clear_dir_download, move_excel)
+from excel import DIR_TEMP, clear_dir_download, move_excel
 from login_eptc import USER, PASSWORD
 import json
 
@@ -23,7 +22,7 @@ URL_INFO_TRAMITE = (
   f'{URL_EPTC}/Sistemas/156/fila/visualiza_info.php?protocolo=')
 RESTANT = '&seq_tramita=0&fase=0&cod_tramite=0'
 
-FILE_NAME = 'dados.json'
+FILENAME_DADOS = 'dados.json'
 
 def start_firefox():
   """Função para abrir o navegador firefox e ir até o site da EPTC
@@ -52,44 +51,36 @@ def close_firefox(browser: Firefox):
     return 'Falha ao fechar o Firefox.'
 
 
-def download_excel(lote :int = 0):
+def download_and_move_excel(browser: Firefox, url: str, filename: str):
+  browser.get(url)
+  browser.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
+  move_excel(filename)
+
+
+def download_excel(lote: int = 0):
   clear_dir_download()
   BROWSER = start_firefox()
   try:
     match lote:
       case 1:
-        BROWSER.get(URL_EXCEL_LOTE_1)
-        BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
-        move_excel('LOTE_1.xls')
+        download_and_move_excel(BROWSER, URL_EXCEL_LOTE_1, 'LOTE_1.xls')
       case 2:
-        BROWSER.get(URL_EXCEL_LOTE_2)
-        BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
-        move_excel('LOTE_2.xls')
+        download_and_move_excel(BROWSER, URL_EXCEL_LOTE_2, 'LOTE_2.xls')
       case _:
-        BROWSER.get(URL_EXCEL_LOTE_1)
-        BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
-        move_excel('LOTE_1.xls')
-        BROWSER.get(URL_EXCEL_LOTE_2)
-        BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
-        move_excel('LOTE_2.xls')
+        download_and_move_excel(BROWSER, URL_EXCEL_LOTE_1, 'LOTE_1.xls')
+        download_and_move_excel(BROWSER, URL_EXCEL_LOTE_2, 'LOTE_2.xls')
     close_firefox(BROWSER)
   except:
-    print('An exception occurred')
-  close_firefox(BROWSER)
+    close_firefox(BROWSER)
+    return 'Falha ao baixar e mover o excel!'
 
 
 def get_informations_from_reclamation():
-  """Função para pegar as informações da reclamação
-
-  Returns:
-    message [cor, mensagem]: retorna uma mensagem de erro e falha
-  """
   try:
-    from reclamations import RECLAMATIONS
-    print(RECLAMATIONS)
+    RECLAMATIONS = {}
   except:
     return ['red', 'arquivos não encontrados']
-
+  
   PROTOCOLS = RECLAMATIONS['PROTOCOLO']
   INFORMATIONS_PROTOCOL = {
     'STPOA_LINHA': [],
@@ -184,7 +175,7 @@ def get_informations_from_reclamation():
     RECLAMATIONS['ORIGEM_RECLAMACAO'] = RECEIVED
     
     try:
-      with open(f'{DIR_TEMP}{FILE_NAME}', 'w', encoding='utf-8') as FILE:
+      with open(f'{DIR_TEMP}{FILENAME_DADOS}', 'w', encoding='utf-8') as FILE:
         json.dump(RECLAMATIONS, FILE, indent=2, ensure_ascii=False)
       
       return ['green', 'Dados salvos com sucesso!']
