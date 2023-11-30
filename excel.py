@@ -95,9 +95,8 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
 
 def read_excel(excel: str):
   lote = 'LOTE 1' if excel == 'LOTE_1.xls' else 'LOTE 2'
-  dir_file = f'{DIR_TEMP}{excel}'
-  with open(dir_file, 'r', encoding='latin-1') as file:
-    file_readed = BeautifulSoup(file.read(), 'html.parser')
+  with open(f'{DIR_TEMP}{excel}', 'r', encoding='latin-1') as EXCEL:
+    file_readed = BeautifulSoup(EXCEL.read(), 'html.parser')
     return extract_values_of_excel(lote, file_readed)
 
 
