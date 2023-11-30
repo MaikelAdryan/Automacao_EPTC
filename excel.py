@@ -40,17 +40,6 @@ def move_excel(lote: str):
     return 'não encontrado'
 
 
-def read_excel(excel: str):
-  lote = 'LOTE 1' if excel == 'LOTE_1.xls' else 'LOTE 2'
-  try:
-    dir_file = f'{DIR_TEMP}{excel}'
-    with open(dir_file, 'r', encoding='latin-1') as file:
-      file_readed = BeautifulSoup(file.read(), 'html.parser')
-      return extract_values_of_excel(lote, file_readed)
-  except:
-    return ['red', 'Arquivo não encontrado']
-
-
 def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
   RECLAMATIONS = {
     'PROTOCOLO': [],
@@ -61,12 +50,9 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
     'DATA_VENCIMENTO': [],
     'PRAZO_DIAS': [],
     'ATRASO_DIAS': [],
-  # 'LOTE': [],
-  # 'DESCRIÇÃO': []
   }
 
   KEYS, TDS = RECLAMATIONS.keys(), EXCEL_READED.find_all('td')
-
   for i, key in enumerate(KEYS):
     values = [str(td.text).strip().upper() for td in TDS[i::8]]
     RECLAMATIONS[key] = values
@@ -77,7 +63,7 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
       return [
         'red', f'{key}: {len(RECLAMATIONS[key])} não bateu com {TOTAL}'
       ]
-
+  
   RECLAMATIONS['PROTOCOLO'] = list(
     map(REFACTOR_PROTOCOL, RECLAMATIONS['PROTOCOLO'])
   )
@@ -95,15 +81,24 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
   for index, protocol in enumerate(RECLAMATIONS['PROTOCOLO']):
     if protocol in DB_PROTOCOLS:
       index_protocol_contains.append(index)
-  
-  for index in index_protocol_contains:
+      
+  for index in reversed(index_protocol_contains):
     for key in RECLAMATIONS:
       del RECLAMATIONS[key][index]
-  
-  with open(f'{DIR_ACTUAL}/reclamations.py', 'w', encoding='utf-8') as file_reclamations:
-    file_reclamations.write(f'RECLAMATIONS = {str(RECLAMATIONS)}')
+
+  if len(RECLAMATIONS['PROTOCOLO']) > 0:
+    with open(f'{DIR_ACTUAL}/reclamations.py', 'w', encoding='utf-8') as file_reclamations:
+      file_reclamations.write(f'RECLAMATIONS = {str(RECLAMATIONS)}')
   
   return ['green', 'Sucesso!']
+
+
+def read_excel(excel: str):
+  lote = 'LOTE 1' if excel == 'LOTE_1.xls' else 'LOTE 2'
+  dir_file = f'{DIR_TEMP}{excel}'
+  with open(dir_file, 'r', encoding='latin-1') as file:
+    file_readed = BeautifulSoup(file.read(), 'html.parser')
+    return extract_values_of_excel(lote, file_readed)
 
 
 def merged_excels(LOTE_1: dict, LOTE_2: dict):
@@ -111,7 +106,7 @@ def merged_excels(LOTE_1: dict, LOTE_2: dict):
   if LOTE_1_KEYS == LOTE_2_KEYS:
     RECLAMATIONS = {}
     for key in LOTE_1_KEYS:
-      RECLAMATIONS[key] =  LOTE_1[key] + LOTE_2[key]
+      RECLAMATIONS[key] = LOTE_1[key] + LOTE_2[key]
     return RECLAMATIONS
   else:
     return f'Lote 1 tem {len(LOTE_1_KEYS)} chaves e '+\
@@ -120,5 +115,5 @@ def merged_excels(LOTE_1: dict, LOTE_2: dict):
 
 if __name__ == '__main__':
   # print(clear_dir_download())
-  print(read_excel('LOTE_1.xls'))
+  print(read_excel('LOTE_2.xls'))
   pass

@@ -36,47 +36,54 @@ def start_firefox():
   return BROWSER
 
 
-def goto_url_download(URL_LOTE: str):
-  """Função que abre o site da EPTC, baixa o excel e fecha o navegador
-  
+def close_firefox(browser: Firefox):
+  """Função para fechar o navegador Firefox já aberto antes
+
   Args:
-    URL_LOTE (str): Baixa a planilha com base no lote
-  
+    browser (Firefox): Navegador aberto pelafunção start_firefox
+
   Returns:
-    [color, text]: a cor a ser preenchida e mensagem de falha ou sucesso
+    message (str): Falha ou Sucesso!
   """
   try:
-    BROWSER = start_firefox()
-    BROWSER.get(URL_LOTE)
-    BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
-    close_firefox(BROWSER)
-    return ['green', 'Sucesso!']
+    browser.quit()
+    return 'Firefox fechado com sucesso.'
   except:
-    return ['red', 'Falha ao baixar.']
+    return 'Falha ao fechar o Firefox.'
+
+
+def goto_url_download(URLS_LOTES: list, EXCEL_FILENAME: str):
+  BROWSER = start_firefox()
+  if len(URLS_LOTES) == 1:
+    try:
+      BROWSER.get(URLS_LOTES[0])
+      BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
+      close_firefox(BROWSER)
+      move_excel(EXCEL_FILENAME)
+      return ['green', f'{EXCEL_FILENAME} baixado com sucesso!']
+    except:
+      return ['red', 'Falha ao baixar.']
+  else:
+    try:
+      for url in URLS_LOTES:
+        BROWSER.get(url)
+        BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
+      close_firefox(BROWSER)
+      return ['green', 'Sucesso!']
+    except:
+      return ['red', 'Falha ao baixar.']
 
 
 def download_excel(lote: int):
-  """Função para ir até o site da Eptc e baixar as planilhas do excel 
-  para extrair os dados das mesmas.
-  
-  Args:
-    lote (int): Número do lote para baixar a planilha
-  
-  Returns:
-    [color, text]: a cor a ser preenchida e mensagem de falha ou sucesso
-  """
   clear_dir_download()
-  moved  = ''
   match lote:
     case 1:
-      goto_url_download(URL_EXCEL_LOTE_1)
-      moved = move_excel('LOTE_1.xls')
+      goto_url_download([URL_EXCEL_LOTE_1], 'LOTE_1.xls')
     case 2:
-      goto_url_download(URL_EXCEL_LOTE_2)
-      moved = move_excel('LOTE_2.xls')
-    case _ :
-      return ['red', 'Falha ao baixar excel!']
-  return ['green', f'Excel LOTE {lote} {moved}!']
+      goto_url_download([URL_EXCEL_LOTE_2], 'LOTE_2.xls')
+    case 3:
+      goto_url_download([URL_EXCEL_LOTE_1, URL_EXCEL_LOTE_2])
+  
 
 
 def get_informations_from_reclamation():
@@ -87,6 +94,7 @@ def get_informations_from_reclamation():
   """
   try:
     from reclamations import RECLAMATIONS
+    print(RECLAMATIONS)
   except:
     return ['red', 'arquivos não encontrados']
 
@@ -192,22 +200,8 @@ def get_informations_from_reclamation():
       return ['red', 'Falha ao salvar os dados.']
 
 
-def close_firefox(browser: Firefox):
-  """Função para fechar o navegador Firefox já aberto antes
-
-  Args:
-    browser (Firefox): Navegador aberto pelafunção start_firefox
-
-  Returns:
-    message (str): Falha ou Sucesso!
-  """
-  try:
-    browser.quit()
-    return 'Firefox fechado com sucesso.'
-  except:
-    return 'Falha ao fechar o Firefox.'
 
 
 if __name__ == '__main__':
-  get_informations_from_reclamation()
+  download_excel(3)
   pass
