@@ -44,25 +44,18 @@ while True:
 
   if events == 'download lote 1':
     color, response = download_excel(1)
-    add_response('response donwload', response, True, color)
 
   if events == 'download lote 2':
     color, response = download_excel(2)
-    add_response('response donwload', response, True, color)
 
   if events == 'download lotes':
-    for i in range(1, 3):
-      color, response = download_excel(i)
-      response = 'Excels LOTE 1 e 2 atualizados com sucesso!'
-      add_response('response donwload', response, True, color)
+    color, response = download_excel()
 
   if events == 'extract lote 1':
     color, response = read_excel('LOTE_1.xls')
-    add_response('response readed', response, True, color)
 
   if events == 'extract lote 2':
     color, response = read_excel('LOTE_2.xls')
-    add_response('response readed', response, True, color)
 
   if events == 'extract relamations':
     get_informations_from_reclamation()
