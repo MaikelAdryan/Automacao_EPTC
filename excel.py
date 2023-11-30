@@ -12,9 +12,9 @@ USER_PATH = os.path.expanduser('~').replace('\\', '/')
 DIR_DOWNLOAD = f'{USER_PATH}/Downloads'
 FILENAME = 'protocolos_por_fila'
 
-REFACTOR_SERVICES = lambda service: service.split(' - ')[-1]
-REFACTOR_ADDRESSS = lambda address: address.split(' ,')[0]
-REFACTOR_PROTOCOL = lambda protocol: protocol.replace('\n', '')
+REFACTOR_SERVICES = lambda service: str(service).split(' - ')[-1]
+REFACTOR_ADDRESSS = lambda address: str(address).split(' ,')[0]
+REFACTOR_PROTOCOL = lambda protocol: str(protocol).replace('\n', '')
 
 def clear_dir_download():
   """Limpa do diretório de downloads todos arquivos que sejam 
