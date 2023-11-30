@@ -3,6 +3,7 @@
 import os
 from shutil import move
 from bs4 import BeautifulSoup
+from dboracle import get_protocols
 
 DIR_ACTUAL = os.getcwd().replace('\\', '/')
 DIR_TEMP = f'{DIR_ACTUAL}/temp/'
@@ -11,9 +12,9 @@ USER_PATH = os.path.expanduser('~').replace('\\', '/')
 DIR_DOWNLOAD = f'{USER_PATH}/Downloads'
 FILENAME = 'protocolos_por_fila'
 
-REFACTOR_SERVICES = lambda service: service.split(' - ')[-1]
-REFACTOR_ADDRESSS = lambda address: address.split(' ,')[0]
-REFACTOR_PROTOCOL = lambda protocol: protocol.replace('\n', '')
+REFACTOR_SERVICES = lambda service: str(service).split(' - ')[-1]
+REFACTOR_ADDRESSS = lambda address: str(address).split(' ,')[0]
+REFACTOR_PROTOCOL = lambda protocol: str(protocol).replace('\n', '')
 
 def clear_dir_download():
   """Limpa do diretório de downloads todos arquivos que sejam 
@@ -87,6 +88,18 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
     REFACTOR_ADDRESSS, RECLAMATIONS['ENDEREÇO'])
   )
   RECLAMATIONS['LOTE'] = [LOTE] * TOTAL
+  
+  DB_PROTOCOLS = get_protocols()
+  
+  index_protocol_contains = []
+  for index, protocol in enumerate(RECLAMATIONS['PROTOCOLO']):
+    if protocol in DB_PROTOCOLS:
+      index_protocol_contains.append(index)
+  
+  for index in index_protocol_contains:
+    for key in RECLAMATIONS:
+      del RECLAMATIONS[key][index]
+  
   with open(f'{DIR_ACTUAL}/reclamations.py', 'w', encoding='utf-8') as file_reclamations:
     file_reclamations.write(f'RECLAMATIONS = {str(RECLAMATIONS)}')
   
@@ -106,6 +119,6 @@ def merged_excels(LOTE_1: dict, LOTE_2: dict):
 
 
 if __name__ == '__main__':
-  print(clear_dir_download())
-  #print(read_excel('LOTE_1.xls'))
+  # print(clear_dir_download())
+  print(read_excel('LOTE_1.xls'))
   pass

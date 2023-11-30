@@ -1,4 +1,5 @@
 __pycache__
 login_eptc.py
-login_dboracle.py
+dboracle.ini
 test.py
+.vscode
