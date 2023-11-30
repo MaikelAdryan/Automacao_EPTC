@@ -98,7 +98,7 @@ def get_informations_from_reclamation():
     'STPOA_MOTIVO': [],
     'STPOA_DATA': [],
     'STPOA_HORA': [],
-    'DESCRIÇÃO': []
+    'DESCRICAO': []
   }
 
   INFORMATIONS_KEYS = INFORMATIONS_PROTOCOL.keys()
@@ -111,13 +111,13 @@ def get_informations_from_reclamation():
         BROWSER.get(f'{URL_FIND_PROTOCOL}{protocol}')
         BROWSER.find_element(By.XPATH, XPATH_DETALHES_TRAMITES).click()
         text = BROWSER.find_element(By.XPATH, XPATH_TEXTAREA).text
-        INFORMATIONS_PROTOCOL['DESCRIÇÃO'].append(text)
+        INFORMATIONS_PROTOCOL['DESCRICAO'].append(text)
       except:
         return ['red', 'Baixe a planilha novamente!']
       try:
         BROWSER.get(f'{URL_INFO_TRAMITE}{protocol}{RESTANT}')
         for key in INFORMATIONS_KEYS:
-          if key == 'DESCRIÇÃO':
+          if key == 'DESCRICAO':
             break
           td = BROWSER.find_element(By.XPATH, f"//td[text()='{key}']")
           text = td.find_element(By.XPATH, 'following-sibling::td').text
@@ -135,22 +135,58 @@ def get_informations_from_reclamation():
       else:
         RECLAMATIONS[key] = INFORMATIONS_PROTOCOL[key]
     
-    EMP = []
-    for car in RECLAMATIONS['STPOA_PREFIXO']:
-      if car.startswith(('66', '67', '68')):
-        EMP.append(1)
-      elif car.startswith(('64', '65')):
-        EMP.append(3)
-      elif car.startswith('61'):
-        EMP.append(4)
-      else:
-        EMP.append(21)
+    # EMP = []
+    # for car in RECLAMATIONS['STPOA_PREFIXO']:
+    #   if car.startswith(('66', '67', '68')):
+    #     EMP.append(1)
+    #   elif car.startswith(('64', '65')):
+    #     EMP.append(3)
+    #   elif car.startswith('61'):
+    #     EMP.append(4)
+    #   else:
+    #     EMP.append(21)
+    # RECLAMATIONS['EMP'] = EMP
+    RECLAMATIONS['EMP'] = [21] * TOTAL
 
-    RECLAMATIONS['EMP'] = EMP
+    RECLAMATIONS['STPOA_MOTIVO'] = [
+      motive.upper() for motive in RECLAMATIONS['STPOA_MOTIVO']
+    ]
+
+    SENTIDO = []
+    for sentido in RECLAMATIONS['STPOA_SENTIDO']:
+      match sentido:
+        case 'BairroCentro':
+          text = '1'
+        case 'CentroBairro':
+          text = '2'
+        case 'BairroCentroBairro':
+          text = 'BB'
+        case 'CentroBairroCentro':
+          text = 'CC'
+        case 'TerminalBairroTerminal':
+          text = 'TT'
+      SENTIDO.append(text)
+    RECLAMATIONS['STPOA_SENTIDO'] = SENTIDO
+    
+    DESCRICAO = []
+    RECEIVED = []
+    RECEIVED_EMAIL = '[RECLAMAÇÃO RECEBIDA POR E-MAIL]'
+    for description in RECLAMATIONS['DESCRICAO']:
+      description = description.replace('\n', '').upper()
+      if RECEIVED_EMAIL in description:
+        text = description.replace(RECEIVED_EMAIL, '')
+        RECEIVED.append('EMAIL')
+      else:
+        text = description
+        RECEIVED.append('TELEFONE')
+      DESCRICAO.append(text)
+    RECLAMATIONS['DESCRICAO'] = DESCRICAO
+    RECLAMATIONS['ORIGEM_RECLAMACAO'] = RECEIVED
     
     try:
       with open(f'{DIR_TEMP}{FILE_NAME}', 'w', encoding='utf-8') as FILE:
         json.dump(RECLAMATIONS, FILE, indent=2, ensure_ascii=False)
+      
       return ['green', 'Dados salvos com sucesso!']
     except:
       return ['red', 'Falha ao salvar os dados.']
@@ -173,5 +209,5 @@ def close_firefox(browser: Firefox):
 
 
 if __name__ == '__main__':
-  # print(get_informations_from_reclamation())
+  get_informations_from_reclamation()
   pass
