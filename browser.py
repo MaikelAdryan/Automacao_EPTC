@@ -2,8 +2,7 @@
 
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
-from excel import (
-  DIR_TEMP, clear_dir_download, move_excel)
+from excel import DIR_TEMP, clear_dir_download, move_excel
 from login_eptc import USER, PASSWORD
 import json
 
@@ -23,7 +22,7 @@ URL_INFO_TRAMITE = (
   f'{URL_EPTC}/Sistemas/156/fila/visualiza_info.php?protocolo=')
 RESTANT = '&seq_tramita=0&fase=0&cod_tramite=0'
 
-FILE_NAME = 'dados.json'
+FILENAME_DADOS = 'dados.json'
 
 def start_firefox():
   """Função para abrir o navegador firefox e ir até o site da EPTC
@@ -36,60 +35,52 @@ def start_firefox():
   return BROWSER
 
 
-def goto_url_download(URL_LOTE: str):
-  """Função que abre o site da EPTC, baixa o excel e fecha o navegador
-  
+def close_firefox(browser: Firefox):
+  """Função para fechar o navegador Firefox já aberto antes
+
   Args:
-    URL_LOTE (str): Baixa a planilha com base no lote
-  
+    browser (Firefox): Navegador aberto pelafunção start_firefox
+
   Returns:
-    [color, text]: a cor a ser preenchida e mensagem de falha ou sucesso
+    message (str): Falha ou Sucesso!
   """
   try:
-    BROWSER = start_firefox()
-    BROWSER.get(URL_LOTE)
-    BROWSER.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
-    close_firefox(BROWSER)
-    return ['green', 'Sucesso!']
+    browser.quit()
+    return 'Firefox fechado com sucesso.'
   except:
-    return ['red', 'Falha ao baixar.']
+    return 'Falha ao fechar o Firefox.'
 
 
-def download_excel(lote: int):
-  """Função para ir até o site da Eptc e baixar as planilhas do excel 
-  para extrair os dados das mesmas.
-  
-  Args:
-    lote (int): Número do lote para baixar a planilha
-  
-  Returns:
-    [color, text]: a cor a ser preenchida e mensagem de falha ou sucesso
-  """
+def download_and_move_excel(browser: Firefox, url: str, filename: str):
+  browser.get(url)
+  browser.find_element(By.XPATH, XPATH_BUTTON_DOWNLOAD_EXCEL).click()
+  move_excel(filename)
+
+
+def download_excel(lote: int = 0):
   clear_dir_download()
-  moved  = ''
-  match lote:
-    case 1:
-      goto_url_download(URL_EXCEL_LOTE_1)
-      moved = move_excel('LOTE_1.xls')
-    case 2:
-      goto_url_download(URL_EXCEL_LOTE_2)
-      moved = move_excel('LOTE_2.xls')
-    case _ :
-      return ['red', 'Falha ao baixar excel!']
-  return ['green', f'Excel LOTE {lote} {moved}!']
+  BROWSER = start_firefox()
+  try:
+    match lote:
+      case 1:
+        download_and_move_excel(BROWSER, URL_EXCEL_LOTE_1, 'LOTE_1.xls')
+      case 2:
+        download_and_move_excel(BROWSER, URL_EXCEL_LOTE_2, 'LOTE_2.xls')
+      case _:
+        download_and_move_excel(BROWSER, URL_EXCEL_LOTE_1, 'LOTE_1.xls')
+        download_and_move_excel(BROWSER, URL_EXCEL_LOTE_2, 'LOTE_2.xls')
+    close_firefox(BROWSER)
+  except:
+    close_firefox(BROWSER)
+    return 'Falha ao baixar e mover o excel!'
 
 
 def get_informations_from_reclamation():
-  """Função para pegar as informações da reclamação
-
-  Returns:
-    message [cor, mensagem]: retorna uma mensagem de erro e falha
-  """
   try:
-    from reclamations import RECLAMATIONS
+    RECLAMATIONS = {}
   except:
     return ['red', 'arquivos não encontrados']
-
+  
   PROTOCOLS = RECLAMATIONS['PROTOCOLO']
   INFORMATIONS_PROTOCOL = {
     'STPOA_LINHA': [],
@@ -184,7 +175,7 @@ def get_informations_from_reclamation():
     RECLAMATIONS['ORIGEM_RECLAMACAO'] = RECEIVED
     
     try:
-      with open(f'{DIR_TEMP}{FILE_NAME}', 'w', encoding='utf-8') as FILE:
+      with open(f'{DIR_TEMP}{FILENAME_DADOS}', 'w', encoding='utf-8') as FILE:
         json.dump(RECLAMATIONS, FILE, indent=2, ensure_ascii=False)
       
       return ['green', 'Dados salvos com sucesso!']
@@ -192,22 +183,6 @@ def get_informations_from_reclamation():
       return ['red', 'Falha ao salvar os dados.']
 
 
-def close_firefox(browser: Firefox):
-  """Função para fechar o navegador Firefox já aberto antes
-
-  Args:
-    browser (Firefox): Navegador aberto pelafunção start_firefox
-
-  Returns:
-    message (str): Falha ou Sucesso!
-  """
-  try:
-    browser.quit()
-    return 'Firefox fechado com sucesso.'
-  except:
-    return 'Falha ao fechar o Firefox.'
-
-
 if __name__ == '__main__':
-  get_informations_from_reclamation()
+  download_excel()
   pass
