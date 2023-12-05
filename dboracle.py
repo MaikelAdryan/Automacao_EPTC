@@ -113,8 +113,6 @@ def send_reclamation_to_dboracle():
     with open('temp/dados.json', 'r', encoding='utf-8') as FILE_JSON:
       RECLAMATIONS = load(FILE_JSON)
       TOTAL = len(RECLAMATIONS['PROTOCOLO'])
-      # print(RECLAMATIONS['PROTOCOLO'])
-      # insert_reclamation()
   except:
     return ['red', 'Falha ao carregar os dados.']
   for i in range(TOTAL):
@@ -143,31 +141,10 @@ def send_reclamation_to_dboracle():
       print(f'{i} concluido')
     except:
       print('An exception occurred')
+  return 'Enviados com sucesso!'
 
 
 
 if __name__ == '__main__':
   print(send_reclamation_to_dboracle())
-  # RECLAMATION = {
-  #   'EMP': 21,
-  #   'PROTOCOLO': '319432-23-98',
-  #   'RECLAMANTE': 'NAIRA AMARANTE',
-  #   'SERVICO': 'TRIPULAÇÃO',
-  #   'ENDERECO': 'PCA PEREIRA PAROBE',
-  #   'DATA_ABERTURA': '04/10/2023',
-  #   'DATA_VENCIMENO': '03/12/2023',
-  #   'PRAZO_DIAS': '60',
-  #   'ATRASO_DIAS': '-',
-  #   'LOTE': 'LOTE 1',
-  #   'STPOA_LINHA': '610',
-  #   'STPOA_SENTIDO': 'BC',
-  #   'STPOA_PREFIXO': '6610',
-  #   'STPOA_MOTIVO': 'TESTE_NGS',
-  #   'STPOA_DATA': '04/10/2023',
-  #   'STPOA_HORA': '14:30',
-  #   'DESCRICAO': 'test',
-  #   'ORIGEM_RECLAMACAO': 'test'
-  # }
-  # insert_reclamation(RECLAMATION)
-  # print(get_protocols())
   pass
