@@ -22,8 +22,6 @@ URL_INFO_TRAMITE = (
   f'{URL_EPTC}/Sistemas/156/fila/visualiza_info.php?protocolo=')
 RESTANT = '&seq_tramita=0&fase=0&cod_tramite=0'
 
-FILENAME_DADOS = 'dados.json'
-
 def start_firefox():
   """Função para abrir o navegador firefox e ir até o site da EPTC
 
@@ -77,112 +75,114 @@ def download_excel(lote: int = 0):
 
 def get_informations_from_reclamation():
   try:
-    RECLAMATIONS = {}
+    with open(f'{DIR_TEMP}reclamations.json', 'r', encoding='utf-8') as FILE_JSON:
+      RECLAMATIONS = json.load(FILE_JSON)
   except:
-    return ['red', 'arquivos não encontrados']
-  
+    return 'Falha ao abrir o json!'
   PROTOCOLS = RECLAMATIONS['PROTOCOLO']
-  INFORMATIONS_PROTOCOL = {
-    'STPOA_LINHA': [],
-    'STPOA_SENTIDO': [],
-    'STPOA_PREFIXO': [],
-    'STPOA_MOTIVO': [],
-    'STPOA_DATA': [],
-    'STPOA_HORA': [],
-    'DESCRICAO': []
-  }
-
-  INFORMATIONS_KEYS = INFORMATIONS_PROTOCOL.keys()
   TOTAL = len(PROTOCOLS)
-
-  if TOTAL > 0:
-    BROWSER = start_firefox()
-    for protocol in PROTOCOLS:
-      try:
-        BROWSER.get(f'{URL_FIND_PROTOCOL}{protocol}')
-        BROWSER.find_element(By.XPATH, XPATH_DETALHES_TRAMITES).click()
-        text = BROWSER.find_element(By.XPATH, XPATH_TEXTAREA).text
-        INFORMATIONS_PROTOCOL['DESCRICAO'].append(text)
-      except:
-        return ['red', 'Baixe a planilha novamente!']
-      try:
-        BROWSER.get(f'{URL_INFO_TRAMITE}{protocol}{RESTANT}')
-        for key in INFORMATIONS_KEYS:
-          if key == 'DESCRICAO':
-            break
-          td = BROWSER.find_element(By.XPATH, f"//td[text()='{key}']")
-          text = td.find_element(By.XPATH, 'following-sibling::td').text
-          INFORMATIONS_PROTOCOL[key].append(text)
-      except:
-        return ['red', 'Baixe a planilha novamente!']
+  
+  match TOTAL:
+    case 0:
+      return 'Nada a atualizar!'
     
-    close_firefox(BROWSER)
-    
-    for key in INFORMATIONS_KEYS:
-      TOTAL_KEY = len(INFORMATIONS_PROTOCOL[key])
-      if TOTAL != TOTAL_KEY:
-        return f'Total não bate! {key} com {TOTAL_KEY} valores é dife'+\
-          f'rente de {TOTAL}.'
-      else:
-        RECLAMATIONS[key] = INFORMATIONS_PROTOCOL[key]
-    
-    # EMP = []
-    # for car in RECLAMATIONS['STPOA_PREFIXO']:
-    #   if car.startswith(('66', '67', '68')):
-    #     EMP.append(1)
-    #   elif car.startswith(('64', '65')):
-    #     EMP.append(3)
-    #   elif car.startswith('61'):
-    #     EMP.append(4)
-    #   else:
-    #     EMP.append(21)
-    # RECLAMATIONS['EMP'] = EMP
-    RECLAMATIONS['EMP'] = [21] * TOTAL
-
-    RECLAMATIONS['STPOA_MOTIVO'] = [
-      motive.upper() for motive in RECLAMATIONS['STPOA_MOTIVO']
-    ]
-
-    SENTIDO = []
-    for sentido in RECLAMATIONS['STPOA_SENTIDO']:
-      match sentido:
-        case 'BairroCentro':
-          text = '1'
-        case 'CentroBairro':
-          text = '2'
-        case 'BairroCentroBairro':
-          text = 'BB'
-        case 'CentroBairroCentro':
-          text = 'CC'
-        case 'TerminalBairroTerminal':
-          text = 'TT'
-      SENTIDO.append(text)
-    RECLAMATIONS['STPOA_SENTIDO'] = SENTIDO
-    
-    DESCRICAO = []
-    RECEIVED = []
-    RECEIVED_EMAIL = '[RECLAMAÇÃO RECEBIDA POR E-MAIL]'
-    for description in RECLAMATIONS['DESCRICAO']:
-      description = description.replace('\n', '').upper()
-      if RECEIVED_EMAIL in description:
-        text = description.replace(RECEIVED_EMAIL, '')
-        RECEIVED.append('EMAIL')
-      else:
-        text = description
-        RECEIVED.append('TELEFONE')
-      DESCRICAO.append(text)
-    RECLAMATIONS['DESCRICAO'] = DESCRICAO
-    RECLAMATIONS['ORIGEM_RECLAMACAO'] = RECEIVED
-    
-    try:
-      with open(f'{DIR_TEMP}{FILENAME_DADOS}', 'w', encoding='utf-8') as FILE:
-        json.dump(RECLAMATIONS, FILE, indent=2, ensure_ascii=False)
+    case _:
+      INFORMATIONS_PROTOCOL = {
+        'STPOA_LINHA': [],
+        'STPOA_SENTIDO': [],
+        'STPOA_PREFIXO': [],
+        'STPOA_MOTIVO': [],
+        'STPOA_DATA': [],
+        'STPOA_HORA': [],
+        'DESCRICAO': []
+      }
+      INFORMATIONS_KEYS = INFORMATIONS_PROTOCOL.keys()
+      BROWSER = start_firefox()
+      for protocol in PROTOCOLS:
+        try:
+          BROWSER.get(f'{URL_FIND_PROTOCOL}{protocol}')
+          BROWSER.find_element(By.XPATH, XPATH_DETALHES_TRAMITES).click()
+          text = BROWSER.find_element(By.XPATH, XPATH_TEXTAREA).text
+          INFORMATIONS_PROTOCOL['DESCRICAO'].append(text)
+        except:
+          return 'Baixe a planilha novamente!'
+        try:
+          BROWSER.get(f'{URL_INFO_TRAMITE}{protocol}{RESTANT}')
+          for key in INFORMATIONS_KEYS:
+            if key == 'DESCRICAO':
+              break
+            td = BROWSER.find_element(By.XPATH, f"//td[text()='{key}']")
+            text = td.find_element(By.XPATH, 'following-sibling::td').text
+            INFORMATIONS_PROTOCOL[key].append(text)
+        except:
+          return 'Baixe a planilha novamente!'
       
-      return ['green', 'Dados salvos com sucesso!']
-    except:
-      return ['red', 'Falha ao salvar os dados.']
+      close_firefox(BROWSER)
+      
+      for key in INFORMATIONS_KEYS:
+        TOTAL_KEY = len(INFORMATIONS_PROTOCOL[key])
+        if TOTAL != TOTAL_KEY:
+          return f'Total não bate! {key} com {TOTAL_KEY} valores é dife'+\
+            f'rente de {TOTAL}.'
+        else:
+          RECLAMATIONS[key] = INFORMATIONS_PROTOCOL[key]
+      
+      # EMP = []
+      # for car in RECLAMATIONS['STPOA_PREFIXO']:
+      #   if car.startswith(('66', '67', '68')):
+      #     EMP.append(1)
+      #   elif car.startswith(('64', '65')):
+      #     EMP.append(3)
+      #   elif car.startswith('61'):
+      #     EMP.append(4)
+      #   else:
+      #     EMP.append(21)
+      # RECLAMATIONS['EMP'] = EMP
+      RECLAMATIONS['EMP'] = [21] * TOTAL
+
+      RECLAMATIONS['STPOA_MOTIVO'] = [
+        motive.upper() for motive in RECLAMATIONS['STPOA_MOTIVO']
+      ]
+
+      SENTIDO = []
+      for sentido in RECLAMATIONS['STPOA_SENTIDO']:
+        match sentido:
+          case 'BairroCentro':
+            text = '1'
+          case 'CentroBairro':
+            text = '2'
+          case 'BairroCentroBairro':
+            text = 'BB'
+          case 'CentroBairroCentro':
+            text = 'CC'
+          case 'TerminalBairroTerminal':
+            text = 'TT'
+        SENTIDO.append(text)
+      RECLAMATIONS['STPOA_SENTIDO'] = SENTIDO
+      
+      DESCRICAO = []
+      RECEIVED = []
+      RECEIVED_EMAIL = '[RECLAMAÇÃO RECEBIDA POR E-MAIL]'
+      for description in RECLAMATIONS['DESCRICAO']:
+        description = str(description).replace('\n', '').upper().strip()
+        if RECEIVED_EMAIL in description:
+          text = description.replace(RECEIVED_EMAIL, '').strip()
+          RECEIVED.append('EMAIL')
+        else:
+          text = description
+          RECEIVED.append('TELEFONE')
+        DESCRICAO.append(text)
+      RECLAMATIONS['DESCRICAO'] = DESCRICAO
+      RECLAMATIONS['ORIGEM_RECLAMACAO'] = RECEIVED
+      
+      try:
+        with open(f'{DIR_TEMP}dados.json', 'w', encoding='utf-8') as FILE:
+          json.dump(RECLAMATIONS, FILE, indent=2, ensure_ascii=False)
+        
+        return 'Dados salvos com sucesso!'
+      except:
+        return 'Falha ao salvar os dados.'
 
 
 if __name__ == '__main__':
-  download_excel()
   pass
