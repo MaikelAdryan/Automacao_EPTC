@@ -2,9 +2,12 @@
 
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
-from excel import DIR_TEMP, clear_dir_download, move_excel
-from login_eptc import USER, PASSWORD
+from excel import clear_dir_download, move_excel
+from diretories import DIR_TEMP
 import json
+
+from dboracle import get_user_and_password
+USER, PASSWORD = get_user_and_password()
 
 URL_EPTC = f'https://{USER}:{PASSWORD}@156poa.procempa.com.br'
 URL_FILA = f'{URL_EPTC}/sistemas/156/fila/servicos_local.php?'
@@ -126,18 +129,7 @@ def get_informations_from_reclamation():
             f'rente de {TOTAL}.'
         else:
           RECLAMATIONS[key] = INFORMATIONS_PROTOCOL[key]
-      
-      # EMP = []
-      # for car in RECLAMATIONS['STPOA_PREFIXO']:
-      #   if car.startswith(('66', '67', '68')):
-      #     EMP.append(1)
-      #   elif car.startswith(('64', '65')):
-      #     EMP.append(3)
-      #   elif car.startswith('61'):
-      #     EMP.append(4)
-      #   else:
-      #     EMP.append(21)
-      # RECLAMATIONS['EMP'] = EMP
+          
       RECLAMATIONS['EMP'] = [21] * TOTAL
 
       RECLAMATIONS['STPOA_MOTIVO'] = [
