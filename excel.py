@@ -15,12 +15,12 @@ REFACTOR_ADDRESSS = lambda address: str(address).split(' ,')[0]
 REFACTOR_PROTOCOL = lambda protocol: str(protocol).replace('\n', '')
 
 def clear_dir_download():
-  """Limpa do diretório de downloads todos arquivos que sejam 
+  '''Limpa do diretório de downloads todos arquivos que sejam 
   'protocolos_por_fila...'
 
   Returns:
     message [color(str), message:(str)]: Mensagem de sucesso ou falha
-  """
+  '''
   try:
     for file in listdir(DIR_DOWNLOAD):
       if file.startswith(FILENAME):
@@ -82,11 +82,13 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
     for key in RECLAMATIONS:
       del RECLAMATIONS[key][index]
 
+  contains_data_to_insert_db = False
   if len(RECLAMATIONS['PROTOCOLO']) > 0:
     with open(f'{DIR_TEMP}reclamations.json', 'w', encoding='utf-8') as FILE:
       dump(RECLAMATIONS, FILE, indent=2, ensure_ascii=False)
+      contains_data_to_insert_db = True
   remove(f'{DIR_TEMP}{LOTE.replace(" ", "_")}.xls')
-  return 'Sucesso!'
+  return contains_data_to_insert_db
 
 
 def read_excel(excel: str):
