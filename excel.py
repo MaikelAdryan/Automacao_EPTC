@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import json
 import os
 from shutil import move
 from bs4 import BeautifulSoup
@@ -87,8 +88,9 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
       del RECLAMATIONS[key][index]
 
   if len(RECLAMATIONS['PROTOCOLO']) > 0:
-    with open(f'{DIR_ACTUAL}/reclamations.py', 'w', encoding='utf-8') as file_reclamations:
-      file_reclamations.write(f'RECLAMATIONS = {str(RECLAMATIONS)}')
+    with open(f'{DIR_TEMP}reclamations.json', 'w', encoding='utf-8') as FILE:
+      json.dump(RECLAMATIONS, FILE, indent=2, ensure_ascii=False)
+      # FILE.write(f'RECLAMATIONS = {str(RECLAMATIONS)}')
   
   return ['green', 'Sucesso!']
 
