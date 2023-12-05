@@ -2,8 +2,9 @@ import oracledb
 import configparser
 from json import load
 
-from diretories import DIR_NGS
-
+from diretories import DIR_NGS, clear_file
+from logs import write_log
+ 
 FILE_NGS_CONFIG = f'{DIR_NGS}NGS.ini'
 CONFIG = configparser.ConfigParser()
 CONFIG.read(FILE_NGS_CONFIG)
@@ -190,11 +191,11 @@ def send_reclamation_to_dboracle():
     }
     try:
       insert_reclamation(JSON)
-      print(f'{i} concluido')
     except:
-      print('An exception occurred')
-  return 'Enviados com sucesso!'
-
+      write_log(f'Falha ao inserir o protocolo {JSON["PROTOCOLO"]}')
+      return
+  clear_file('dados')
+  write_log(f'Incluidos {TOTAL} protocolos.')
 
 
 if __name__ == '__main__':
