@@ -2,32 +2,127 @@ import oracledb
 import configparser
 from json import load
 
-FILE_CONFIG = 'dboracle.ini'
-CONFIG = configparser.ConfigParser()
-CONFIG.read(FILE_CONFIG)
-DB_CONFIG = CONFIG['database']
+from diretories import DIR_NGS
 
-ORACLE_CLIENT = DB_CONFIG['client_oracle']
+FILE_NGS_CONFIG = f'{DIR_NGS}NGS.ini'
+CONFIG = configparser.ConfigParser()
+CONFIG.read(FILE_NGS_CONFIG)
+
+NGS_DIR_ORACLE = CONFIG['NGS_DIR_ORACLE']
+ORACLE_CLIENT = NGS_DIR_ORACLE['DIR']
 oracledb.init_oracle_client(lib_dir=ORACLE_CLIENT)
 
+CONFIG_NGS = CONFIG['NGS']
+ORACLE_HOST, ORACLE_PORT, ORACLE_SERVICE  = CONFIG_NGS['SQLNET']\
+  .split(':')
+
+FILE_CONFIG = 'dboracle.ini'
+CONFIG.read(FILE_CONFIG)
+DB_CONFIG = CONFIG['DATABASE']
+
 ORACLE_USER, ORACLE_PASS = DB_CONFIG['user'], DB_CONFIG['password']
-ORACLE_HOST, ORACLE_PORT = DB_CONFIG['host'], DB_CONFIG['port']
-ORACLE_SERVICE = DB_CONFIG['service']
+
 DNS = oracledb.makedsn(
   host=ORACLE_HOST, port=ORACLE_PORT, service_name=ORACLE_SERVICE)
 
+QUERY_GET_USER_PASS = '''
+SELECT
+  (
+    SELECT
+      comandos
+    FROM
+      dg0080
+    WHERE
+      emp = 21
+      AND sistema = 'SISEST'
+      AND opcao = 'LOGIN_EPTC'
+) login,
+  (
+    SELECT
+      comandos
+    FROM
+      dg0080
+    WHERE
+      emp = 21
+      AND sistema = 'SISEST'
+      AND opcao = 'PASS_EPTC'
+  ) pass
+FROM
+  dual
+'''
+
+QUERY_INSERT_RECLAMATION = f'''
+INSERT INTO dmb700 (
+  emp,
+  id_seq,
+  protocolo,
+  reclamante,
+  servico,
+  endereco,
+  data_abertura,
+  data_vencimento,
+  prazo_dias,
+  atraso_dias,
+  lote,
+  stpoa_linha,
+  stpoa_sentido,
+  stpoa_prefixo,
+  stpoa_motivo,
+  stpoa_data,
+  stpoa_hora,
+  descricao,
+  origem_reclamacao
+) VALUES (
+  :emp,
+  s_dmb700.NEXTVAL,
+  :protocolo,
+  :reclamante,
+  :servico,
+  :endereco,
+  :data_abertura,
+  :data_vencimeno,
+  :prazo_dias,
+  :atraso_dias,
+  :lote,
+  :stpo_linha,
+  :stpoa_sentido,
+  :stpoa_prefixo,
+  :stpoa_motivo,
+  :stpoa_data,
+  :stpoa_hora,
+  :descricao,
+  :origem_reclamacao
+)
+'''
+
+def get_user_and_password():
+  '''Função para pegar o usuário e a senha no banco de dados
+
+  Returns:
+    LOGIN (USER, PASSWORD): Usuário e senha do login
+  '''
+  with oracledb.connect(
+    user=ORACLE_USER, password=ORACLE_PASS, dsn=DNS
+  ) as CONNECTION:
+    with CONNECTION.cursor() as CURSOR:
+      CURSOR.execute(QUERY_GET_USER_PASS)
+      LOGIN = CURSOR.fetchall()[0]
+      USER, PASSWORD = LOGIN
+  return USER, PASSWORD
+
+
 def get_protocols():
-  """Pega todos os protocolos do banco de dados.
+  '''Pega todos os protocolos do banco de dados.
 
   Returns:
     PROTOCOLS (list): Lista contendo todos os protocolos
-  """
+  '''
   PROTOCOLS = []
   with oracledb.connect(
     user=ORACLE_USER, password=ORACLE_PASS, dsn=DNS
   ) as CONNECTION:
     with CONNECTION.cursor() as CURSOR:
-      QUERY = f"""select PROTOCOLO from DMB700"""
+      QUERY = f'''select PROTOCOLO from DMB700'''
       CURSOR.execute(QUERY)
       db_protocols = CURSOR.fetchall()
       for protocol in db_protocols:
@@ -40,51 +135,8 @@ def insert_reclamation(reclamation: dict):
     user=ORACLE_USER, password=ORACLE_PASS, dsn=DNS
   ) as CONNECTION:
     with CONNECTION.cursor() as CURSOR:
-      QUERY = f"""
-        INSERT INTO DMB700 (
-          EMP,
-          ID_SEQ,
-          PROTOCOLO,
-          RECLAMANTE,
-          SERVICO,
-          ENDERECO,
-          DATA_ABERTURA,
-          DATA_VENCIMENTO,
-          PRAZO_DIAS,
-          ATRASO_DIAS,
-          LOTE,
-          STPOA_LINHA,
-          STPOA_SENTIDO,
-          STPOA_PREFIXO,
-          STPOA_MOTIVO,
-          STPOA_DATA,
-          STPOA_HORA,
-          DESCRICAO,
-          ORIGEM_RECLAMACAO
-        ) VALUES (
-          :EMP,
-          S_DMB700.NEXTVAL,
-          :PROTOCOLO,
-          :RECLAMANTE,
-          :SERVICO,
-          :ENDERECO,
-          :DATA_ABERTURA,
-          :DATA_VENCIMENO,
-          :PRAZO_DIAS,
-          :ATRASO_DIAS,
-          :LOTE,
-          :STPO_LINHA,
-          :STPOA_SENTIDO,
-          :STPOA_PREFIXO,
-          :STPOA_MOTIVO,
-          :STPOA_DATA,
-          :STPOA_HORA,
-          :DESCRICAO,
-          :ORIGEM_RECLAMACAO
-        )
-      """
       CURSOR.execute(
-        QUERY,
+        QUERY_INSERT_RECLAMATION,
         EMP=reclamation['EMP'],
         PROTOCOLO=reclamation['PROTOCOLO'],
         RECLAMANTE=reclamation['RECLAMANTE'],
@@ -114,7 +166,7 @@ def send_reclamation_to_dboracle():
       RECLAMATIONS = load(FILE_JSON)
       TOTAL = len(RECLAMATIONS['PROTOCOLO'])
   except:
-    return ['red', 'Falha ao carregar os dados.']
+    return 'Falha ao carregar os dados.'
   for i in range(TOTAL):
     JSON = {
       'EMP': RECLAMATIONS['EMP'][i],
@@ -146,5 +198,4 @@ def send_reclamation_to_dboracle():
 
 
 if __name__ == '__main__':
-  print(send_reclamation_to_dboracle())
   pass
