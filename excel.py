@@ -6,7 +6,7 @@ from shutil import move
 from bs4 import BeautifulSoup
 from dboracle import get_protocols
 
-from diretories import DIR_TEMP, DIR_DOWNLOAD
+from directories import DIR_TEMP, DIR_DOWNLOAD
 
 FILENAME = 'protocolos_por_fila'
 
