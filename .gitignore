@@ -2,3 +2,4 @@ __pycache__
 dboracle.ini
 test.py
 .vscode
+build
