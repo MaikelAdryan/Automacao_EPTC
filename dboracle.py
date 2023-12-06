@@ -2,7 +2,7 @@ import oracledb
 import configparser
 from json import load
 
-from diretories import DIR_NGS, clear_file
+from directories import DIR_NGS, clear_file
 from logs import write_log
  
 FILE_NGS_CONFIG = f'{DIR_NGS}NGS.ini'
@@ -17,8 +17,7 @@ CONFIG_NGS = CONFIG['NGS']
 ORACLE_HOST, ORACLE_PORT, ORACLE_SERVICE  = CONFIG_NGS['SQLNET']\
   .split(':')
 
-FILE_CONFIG = 'dboracle.ini'
-CONFIG.read(FILE_CONFIG)
+CONFIG.read('dboracle.ini')
 DB_CONFIG = CONFIG['DATABASE']
 
 ORACLE_USER, ORACLE_PASS = DB_CONFIG['user'], DB_CONFIG['password']
