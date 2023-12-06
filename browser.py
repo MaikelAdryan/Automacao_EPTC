@@ -3,7 +3,7 @@
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
 from excel import clear_dir_download, move_excel
-from diretories import DIR_TEMP, clear_file
+from directories import DIR_TEMP, clear_file
 import json
 
 from dboracle import get_user_and_password, send_reclamation_to_dboracle
