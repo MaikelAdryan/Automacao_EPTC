@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from diretories import DIR_LOGS
+from directories import DIR_LOGS
 DIR_FILE_LOGS = f'{DIR_LOGS}ngAutomacaoEptc.log'
 
 def write_log(message):
@@ -11,10 +11,9 @@ def write_log(message):
   '''
   NOW = datetime.now()
   DATE_FORMAT = NOW.strftime('%Y-%m-%d %H:%M:%S')
-  with open(DIR_FILE_LOGS, 'w', encoding='utf-8') as FILE_LOGS:
-    FILE_LOGS.write(f'{DATE_FORMAT} : {message}')
+  with open(DIR_FILE_LOGS, 'a', encoding='utf-8') as FILE_LOGS:
+    FILE_LOGS.write(f'{DATE_FORMAT} : {message}\n')
 
 
 if __name__ == '__main__':
-  # write_log('Teste')
   pass
