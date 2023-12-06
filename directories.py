@@ -14,4 +14,5 @@ def clear_file(file: str):
     with open(f'{DIR_TEMP}{file}.json', 'w', encoding='utf-8') as FILE:
       FILE.write('')
   except:
-    print('An exception occurred')
+    pass
+
