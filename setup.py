@@ -17,7 +17,6 @@ packages = [
   'bs4'
 ]
 
-
 includes = [
   'os',
   'shutil',
@@ -30,6 +29,7 @@ files = [
   'directories.py',
   'excel.py',
   'logs.py',
+  'config.py',
   'dboracle.ini'
 ]
 files += [
