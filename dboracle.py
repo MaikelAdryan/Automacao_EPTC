@@ -1,27 +1,14 @@
 import oracledb
-import configparser
 from json import load
 
-from directories import DIR_NGS, clear_file
+from directories import clear_file
+from config import (
+  ORACLE_CLIENT, ORACLE_HOST, ORACLE_PASS, ORACLE_PORT, ORACLE_SERVICE,
+  ORACLE_USER)
+
 from logs import write_log
  
-FILE_NGS_CONFIG = f'{DIR_NGS}NGS.ini'
-CONFIG = configparser.ConfigParser()
-CONFIG.read(FILE_NGS_CONFIG)
-
-NGS_DIR_ORACLE = CONFIG['NGS_DIR_ORACLE']
-ORACLE_CLIENT = NGS_DIR_ORACLE['DIR']
 oracledb.init_oracle_client(lib_dir=ORACLE_CLIENT)
-
-CONFIG_NGS = CONFIG['NGS']
-ORACLE_HOST, ORACLE_PORT, ORACLE_SERVICE  = CONFIG_NGS['SQLNET']\
-  .split(':')
-
-CONFIG.read('dboracle.ini')
-DB_CONFIG = CONFIG['DATABASE']
-
-ORACLE_USER, ORACLE_PASS = DB_CONFIG['user'], DB_CONFIG['password']
-
 DNS = oracledb.makedsn(
   host=ORACLE_HOST, port=ORACLE_PORT, service_name=ORACLE_SERVICE)
 
