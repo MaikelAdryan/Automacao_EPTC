@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import os
+from json import dump
+from os import listdir, remove
 from shutil import move
 from bs4 import BeautifulSoup
 from dboracle import get_protocols
 
-DIR_ACTUAL = os.getcwd().replace('\\', '/')
-DIR_TEMP = f'{DIR_ACTUAL}/temp/'
+from directories import DIR_TEMP, DIR_DOWNLOAD
 
-USER_PATH = os.path.expanduser('~').replace('\\', '/')
-DIR_DOWNLOAD = f'{USER_PATH}/Downloads'
 FILENAME = 'protocolos_por_fila'
 
 REFACTOR_SERVICES = lambda service: str(service).split(' - ')[-1]
@@ -17,19 +15,19 @@ REFACTOR_ADDRESSS = lambda address: str(address).split(' ,')[0]
 REFACTOR_PROTOCOL = lambda protocol: str(protocol).replace('\n', '')
 
 def clear_dir_download():
-  """Limpa do diretório de downloads todos arquivos que sejam 
+  '''Limpa do diretório de downloads todos arquivos que sejam 
   'protocolos_por_fila...'
 
   Returns:
     message [color(str), message:(str)]: Mensagem de sucesso ou falha
-  """
+  '''
   try:
-    for file in os.listdir(DIR_DOWNLOAD):
+    for file in listdir(DIR_DOWNLOAD):
       if file.startswith(FILENAME):
-        os.remove(f'{DIR_DOWNLOAD}/{file}')
-    return ['green', 'Diretório limpo!']
+        remove(f'{DIR_DOWNLOAD}/{file}')
+    return 'Diretório limpo!'
   except:
-    return ['red', 'Falha ao limpar diretório de downloads.']
+    return 'Falha ao limpar diretório de downloads.'
 
 
 def move_excel(lote: str):
@@ -60,9 +58,7 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
   TOTAL = len(RECLAMATIONS['PROTOCOLO'])
   for key in KEYS:
     if len(RECLAMATIONS[key]) != TOTAL:
-      return [
-        'red', f'{key}: {len(RECLAMATIONS[key])} não bateu com {TOTAL}'
-      ]
+      return f'{key}: {len(RECLAMATIONS[key])} não bateu com {TOTAL}'
   
   RECLAMATIONS['PROTOCOLO'] = list(
     map(REFACTOR_PROTOCOL, RECLAMATIONS['PROTOCOLO'])
@@ -86,18 +82,20 @@ def extract_values_of_excel(LOTE: str, EXCEL_READED: BeautifulSoup):
     for key in RECLAMATIONS:
       del RECLAMATIONS[key][index]
 
+  contains_data_to_insert_db = False
   if len(RECLAMATIONS['PROTOCOLO']) > 0:
-    with open(f'{DIR_ACTUAL}/reclamations.py', 'w', encoding='utf-8') as file_reclamations:
-      file_reclamations.write(f'RECLAMATIONS = {str(RECLAMATIONS)}')
-  
-  return ['green', 'Sucesso!']
+    with open(f'{DIR_TEMP}reclamations.json', 'w', encoding='utf-8') as FILE:
+      dump(RECLAMATIONS, FILE, indent=2, ensure_ascii=False)
+      contains_data_to_insert_db = True
+  remove(f'{DIR_TEMP}{LOTE.replace(" ", "_")}.xls')
+  return contains_data_to_insert_db
 
 
 def read_excel(excel: str):
   lote = 'LOTE 1' if excel == 'LOTE_1.xls' else 'LOTE 2'
   with open(f'{DIR_TEMP}{excel}', 'r', encoding='latin-1') as EXCEL:
-    file_readed = BeautifulSoup(EXCEL.read(), 'html.parser')
-    return extract_values_of_excel(lote, file_readed)
+    FILE_READED = BeautifulSoup(EXCEL.read(), 'html.parser')
+  return extract_values_of_excel(lote, FILE_READED)
 
 
 def merged_excels(LOTE_1: dict, LOTE_2: dict):
@@ -113,6 +111,4 @@ def merged_excels(LOTE_1: dict, LOTE_2: dict):
 
 
 if __name__ == '__main__':
-  # print(clear_dir_download())
-  print(read_excel('LOTE_2.xls'))
   pass
